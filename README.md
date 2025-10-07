@@ -43,11 +43,23 @@ DB_HOST=localhost
 DB_USERNAME=your_username
 DB_PASSWORD=your_password
 DB_NAME=flight_scraper
-DB_PORT=3306
+DB_PORT=4000
+DB_SSL_CA=
 DB_USE_SSL=false
 ```
+### 4. Tải file isrgrootx1.pem lưu trong thư mục góc
 
-<!-- 3  Cách chạy -->
+### 5. Cách chạy project:
 
 1. Chạy từng web
-   python src/main.py --source Traveloka --origin SGN --destination HAN --date 2025-10-09
+
+```bash
+   python src/main.py --source Traveloka.com --origin SGN --destination HAN --date 2025-10-09
+   python src/main.py --source Booking.com --origin SGN --destination HAN --date 2025-10-09
+   python src/main.py --source Agoda.com --origin SGN --destination HAN --date 2025-10-09
+```
+2. Chạy 1 lần 3 web
+```bash
+python src/main.py
+```
+
