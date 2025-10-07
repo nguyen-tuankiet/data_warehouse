@@ -1,1 +1,32 @@
-./flight_data
+# Thư mục output data
+flight_data/
+__pycache__/
+*.pyc
+
+# File cấu hình nhạy cảm
+.env
+.env.*
+!.env.example
+
+# File chứng chỉ SSL 
+*.pem
+*.crt
+*.key
+*.cer
+
+# IDE configs
+.vscode/
+.idea/
+
+# Python virtual environments
+.venv/
+venv/
+env/
+
+# Log files
+*.log
+
+# Temp files
+*.tmp
+*.temp
+.DS_Store
