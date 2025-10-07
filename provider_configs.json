@@ -1,0 +1,79 @@
+{
+    "agoda": {
+        "provider_name": "agoda",
+        "base_url": "https://www.agoda.com/flights",
+        "mapping_config": {
+            "flight_date": "date",
+            "airline": ["carrier.name", "airline_name"],
+            "flight_number": ["flight.number", "flightNumber"],
+            "departure_airport": ["origin.code", "from"],
+            "arrival_airport": ["destination.code", "to"],
+            "departure_time": ["departure.time", "departureTime"],
+            "arrival_time": ["arrival.time", "arrivalTime"],
+            "duration": "duration",
+            "price": ["pricing.amount", "total"],
+            "currency": ["pricing.currency", "currency"],
+            "stops": ["segments.length", "numberOfStops"],
+            "aircraft_type": "aircraft",
+            "baggage_info": ["baggage.allowance", "baggageInfo"],
+            "meal_info": "mealService",
+            "seat_class": ["cabin.class", "seatClass"],
+            "booking_url": "bookingLink"
+        },
+        "extractors": {
+            "flight_number": "lambda r: (r.get('flight_no') or '').replace(' ', '')",
+            "stops": "lambda r: len(r.get('segments', [])) - 1",
+            "duration": "lambda r: str(r.get('duration_minutes', 0)) + ' minutes'"
+        }
+    },
+    "booking": {
+        "provider_name": "booking",
+        "base_url": "https://www.booking.com/flights",
+        "demo_mode": false,
+        "pagination": {
+            "page_size": 50,
+            "max_pages": 5
+        },
+        "request_config": {
+            "max_retries": 3,
+            "retry_delay": 5,
+            "timeout": 30,
+            "request_delay": {
+                "min": 2,
+                "max": 5
+            }
+        },
+        "selectors": {
+            "flight_card": "[data-testid='flight-card']",
+            "airline_name": ".airline-name",
+            "flight_number": ".flight-number",
+            "departure_time": ".departure-time",
+            "arrival_time": ".arrival-time",
+            "duration": ".duration",
+            "price": ".price",
+            "stops": ".stops-info"
+        }
+    },
+    "traveloka": {
+        "provider_name": "traveloka",
+        "base_url": "https://www.traveloka.com/en-vn/flight",
+        "mapping_config": {
+            "flight_date": ["schedule.date", "flightDate"],
+            "airline": ["airline.name", "carrierName"],
+            "flight_number": ["flightCode", "flightNumber"],
+            "departure_airport": ["origin.airportCode", "departureAirport"],
+            "arrival_airport": ["destination.airportCode", "arrivalAirport"],
+            "departure_time": ["schedule.departureTime", "departureDateTime"],
+            "arrival_time": ["schedule.arrivalTime", "arrivalDateTime"],
+            "duration": "duration",
+            "price": ["priceDetail.total", "totalPrice"],
+            "currency": ["priceDetail.currency", "currency"],
+            "stops": "transitCount",
+            "aircraft_type": "aircraftType",
+            "baggage_info": ["baggage.description", "baggageInfo"],
+            "meal_info": "mealService",
+            "seat_class": ["cabin.type", "seatClass"],
+            "booking_url": "deepLink"
+        }
+    }
+}
