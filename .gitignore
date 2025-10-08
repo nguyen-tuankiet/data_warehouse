@@ -1,12 +1,13 @@
 # Thư mục output data
 flight_data/
+.venv
 __pycache__/
 *.pyc
 
 # File cấu hình nhạy cảm
 .env
-.env.*
-!.env.example
+.env
+!.env
 
 # File chứng chỉ SSL 
 *.pem

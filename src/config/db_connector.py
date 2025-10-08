@@ -5,10 +5,7 @@ import pymysql.cursors
 from dotenv import load_dotenv
 
 def get_db_connection():
-    """
-    Tạo và trả về một đối tượng kết nối tới cơ sở dữ liệu bằng PyMySQL.
-    Hỗ trợ kết nối SSL cho các dịch vụ cloud như TiDB Cloud.
-    """
+
     load_dotenv()
 
     try:
@@ -23,7 +20,6 @@ def get_db_connection():
             'charset': 'utf8mb4'
         }
 
-        # Kiểm tra xem có cần sử dụng SSL không
         if os.getenv('DB_USE_SSL', 'false').lower() == 'true':
             ssl_ca_path = os.getenv('DB_SSL_CA')
             if not ssl_ca_path or not os.path.exists(ssl_ca_path):

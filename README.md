@@ -61,5 +61,7 @@ DB_USE_SSL=false
 2. Chạy 1 lần 3 web
 ```bash
 python src/main.py
+python -m src.main
+
 ```
 

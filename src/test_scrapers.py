@@ -5,12 +5,12 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from datetime import datetime, timedelta
 from config.db_connector import get_db_connection
-from config.db_manager import setup_database, get_active_configs, log_message
+from config.db_manager import setup_database, get_active_configs
 from config.config_manager import ConfigManager
-from scrapers.scraper_manager import ScraperManager
-from scrapers.booking_api_scraper import BookingApiScraper
-from scrapers.agoda_scraper_v2 import AgodaScraperV2
-from scrapers.traveloka_scraper_v2 import TravelokaScraperV2
+from scrapers.ScraperManager import ScraperManager
+from scrapers.BookingScraper import BookingApiScraper
+from scrapers.AgodaScraper import AgodaScraperV2
+from scrapers.TravelokaScraper import TravelScraperV2
 
 def test_database_connection():
     """Test kết nối database"""
@@ -87,7 +87,7 @@ def test_scraper_initialization():
         scrapers = {
             'BookingApiScraper': BookingApiScraper(),
             'AgodaScraperV2': AgodaScraperV2(),
-            'TravelokaScraperV2': TravelokaScraperV2()
+            'TravelokaScraperV2': TravelScraperV2()
         }
         
         for name, scraper in scrapers.items():
@@ -118,7 +118,7 @@ def test_single_scraper(scraper_name: str, origin: str = "SGN", destination: str
         elif scraper_name == "AgodaScraperV2":
             scraper = AgodaScraperV2()
         elif scraper_name == "TravelokaScraperV2":
-            scraper = TravelokaScraperV2()
+            scraper = TravelScraperV2()
         else:
             print(f"✗ Unknown scraper: {scraper_name}")
             return False
@@ -141,7 +141,7 @@ def test_field_mappings():
     """Test field mappings"""
     print("\n=== Testing Field Mappings ===")
     try:
-        from scrapers.field_mapper import FieldMapper
+        from src.etl.field_mapper import FieldMapper
         
         for source in ['Booking.com', 'Agoda', 'Traveloka']:
             mapper = FieldMapper(source)

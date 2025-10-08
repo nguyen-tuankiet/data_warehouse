@@ -1,4 +1,13 @@
-# database/db_manager.py
+from rich.logging import RichHandler
+import logging
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(message)s",
+    datefmt="[%X]",
+    handlers=[RichHandler(rich_tracebacks=True)]
+)
+logger = logging.getLogger(__name__)
 
 def execute_query(connection, query, data=None):
     """Hàm chung để thực thi một câu lệnh SQL"""
@@ -140,14 +149,12 @@ def setup_database(connection):
 
 
 def log_message(connection, level, message, source_name=None, route=None):
-    """Ghi một thông điệp vào bảng logs."""
     query = "INSERT INTO logs (level, message, source_name, route) VALUES (%s, %s, %s, %s)"
     execute_query(connection, query, (level, message, source_name, route))
 
 
 def get_active_configs(connection):
-    """Lấy tất cả các URL đang hoạt động từ bảng config."""
-    query = "SELECT source_name, url, scraper_class FROM config WHERE is_active = TRUE"
+    query = "SELECT source_name, url, scraper_class, scrap_type FROM config WHERE is_active = TRUE"
     configs = execute_read_query(connection, query)
     return configs
 
@@ -200,3 +207,13 @@ def update_field_mapping(connection, source_name, field_name, selector_type, sel
         data_type = VALUES(data_type);
     """
     execute_query(connection, query, (source_name, field_name, selector_type, selector_value, is_required, data_type))
+
+
+def get_airport(connection):
+    query = "SELECT code FROM airport where status = 'ACTIVE'"
+    airports = execute_read_query(connection, query)
+    if airports is None :
+        logger.error("No airport found in database.")
+        return []
+    return [row['code'] for row in airports]
+
