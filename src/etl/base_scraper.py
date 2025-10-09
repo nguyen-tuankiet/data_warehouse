@@ -115,7 +115,6 @@ def parse_duration(duration_text):
         return hours * 60 + minutes
     except (ValueError, IndexError): return None
 
-# ----- HÀM SCRAPING CHÍNH (Phiên bản cải tiến) -----
 def scrape_flights(url, source_name, origin, destination, search_date):
     print(f"Starting data scraping from: {source_name}")
     
@@ -137,13 +136,7 @@ def scrape_flights(url, source_name, origin, destination, search_date):
         options.add_argument("--disable-blink-features=AutomationControlled")
         options.add_argument("--disable-extensions")
         options.add_argument("--disable-plugins")
-        # options.add_argument("--disable-images")  # Commented out - may break some sites
-        # options.add_argument("--disable-javascript")  # Commented out - Traveloka needs JS
-        # options.add_experimental_option("excludeSwitches", ["enable-automation"])  # Not supported
-        # options.add_experimental_option('useAutomationExtension', False)  # Not supported
-        # options.add_experimental_option("detach", True)  # Not supported in this version
-        
-        # Khởi tạo driver với Chrome version 140 (tương thích với Chrome hiện tại)
+
         try:
             driver = uc.Chrome(options=options, use_subprocess=True, version_main=140)
             logger.info("Chrome driver initialized successfully with version 140")

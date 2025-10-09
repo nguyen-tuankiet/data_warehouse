@@ -1,0 +1,218 @@
+airline,departure_airport,departure_time,destination_airport,destination_time,price,duration_time
+VietJet Air,SGN,23:50,HAN,02:00,2.136.936 VND/khách,2h 10m
+VietJet Air,SGN,22:15,HAN,00:25,2.136.936 VND/khách,2h 10m
+Bamboo Airways,SGN,21:15,HAN,23:25,2.436.954 VND/khách,2h 10m
+VietJet Air,SGN,20:05,HAN,22:10,2.731.718 VND/khách,2h 5m
+Vietnam Airlines,SGN,22:00,HAN,00:05,2.904.405 VND/khách,2h 5m
+Bamboo Airways,SGN,19:15,HAN,21:25,2.905.718 VND/khách,2h 10m
+Vietnam Airlines,SGN,22:05,HAN,00:05,3.146.190 VND/khách,2h 0m
+Vietnam Airlines,SGN,23:20,HAN,01:20,3.150.170 VND/khách,2h 0m
+Vietnam Airlines,SGN,23:00,HAN,01:05,3.150.170 VND/khách,2h 5m
+Vietnam Airlines,SGN,20:20,HAN,22:25,3.360.240 VND/khách,2h 5m
+Vietnam Airlines,SGN,20:30,HAN,22:35,3.383.995 VND/khách,2h 5m
+Vietnam Airlines,SGN,19:35,HAN,21:40,3.386.980 VND/khách,2h 5m
+Vietnam Airlines,SGN,19:45,HAN,21:55,3.386.980 VND/khách,2h 10m
+Vietnam Airlines,SGN,19:30,HAN,21:35,3.404.492 VND/khách,2h 5m
+Vietnam Airlines,SGN,21:00,HAN,23:05,3.404.492 VND/khách,2h 5m
+Vietravel Airlines,SGN,13:55,HAN,16:05,3.510.360 VND/khách,2h 10m
+Vietravel Airlines,SGN,17:10,HAN,19:20,3.534.590 VND/khách,2h 10m
+VietJet Air,SGN,17:40,HAN,19:45,3.664.213 VND/khách,2h 5m
+VietJet Air,SGN,09:20,HAN,11:30,3.664.213 VND/khách,2h 10m
+VietJet Air,SGN,17:20,HAN,19:30,3.664.213 VND/khách,2h 10m
+VietJet Air,SGN,18:45,HAN,20:55,3.664.213 VND/khách,2h 10m
+VietJet Air,SGN,20:00,HAN,22:10,3.664.213 VND/khách,2h 10m
+VietJet Air,SGN,21:00,HAN,23:10,3.664.213 VND/khách,2h 10m
+Vietnam Airlines,SGN,16:40,HAN,18:45,3.795.646 VND/khách,2h 5m
+Vietnam Airlines,SGN,17:00,HAN,19:10,3.795.646 VND/khách,2h 10m
+Bamboo Airways,SGN,13:10,HAN,15:20,3.862.908 VND/khách,2h 10m
+Vietnam Airlines,SGN,18:00,HAN,20:05,3.871.187 VND/khách,2h 5m
+Vietravel Airlines,SGN,21:05,HAN,23:15,4.008.418 VND/khách,2h 10m
+Bamboo Airways,SGN,10:40,HAN,12:50,4.282.047 VND/khách,2h 10m
+"Vietravel Airlines, VietJet Air",SGN,08:55,HAN,00:35,1.954.458 VND/khách,15h 40m
+"Vietravel Airlines, VietJet Air",SGN,08:55,HAN,07:50,1.954.458 VND/khách,22h 55m
+"Vietravel Airlines, VietJet Air",SGN,08:55,HAN,08:15,1.954.458 VND/khách,23h 20m
+"Vietravel Airlines, Bamboo Airways",SGN,08:55,HAN,23:20,1.986.717 VND/khách,14h 25m
+VietJet Air,SGN,06:50,HAN,00:35,2.018.557 VND/khách,17h 45m
+"VietJet Air, Bamboo Airways",SGN,06:50,HAN,23:20,2.050.816 VND/khách,16h 30m
+"Vietravel Airlines, Bamboo Airways",SGN,12:05,HAN,23:20,2.120.827 VND/khách,11h 15m
+"Vietravel Airlines, VietJet Air",SGN,13:55,HAN,20:20,2.665.330 VND/khách,6h 25m
+VietJet Air,SGN,14:05,HAN,20:20,2.818.707 VND/khách,6h 15m
+VietJet Air,SGN,11:35,HAN,16:40,3.101.614 VND/khách,5h 5m
+"Vietnam Airlines, VietJet Air",SGN,15:40,HAN,13:35,3.141.489 VND/khách,21h 55m
+VietJet Air,SGN,09:20,HAN,16:40,3.215.403 VND/khách,7h 20m
+VietJet Air,SGN,11:35,HAN,20:20,3.240.979 VND/khách,8h 45m
+"Vietnam Airlines, VietJet Air",SGN,05:40,HAN,12:15,3.313.469 VND/khách,6h 35m
+"Vietnam Airlines, VietJet Air",SGN,05:40,HAN,16:40,3.313.469 VND/khách,11h 0m
+VietJet Air,SGN,09:20,HAN,20:20,3.354.768 VND/khách,11h 0m
+"Vietnam Airlines, VietJet Air",SGN,15:05,HAN,20:20,3.375.431 VND/khách,5h 15m
+"Vietnam Airlines, VietJet Air",SGN,05:40,HAN,11:30,3.452.834 VND/khách,5h 50m
+VietJet Air,SGN,15:00,HAN,13:35,3.553.116 VND/khách,22h 35m
+"Vietnam Airlines, VietJet Air",SGN,13:05,HAN,20:20,3.574.513 VND/khách,7h 15m
+Vietnam Airlines,SGN,15:40,HAN,19:40,3.858.351 VND/khách,4h 0m
+Vietnam Airlines,SGN,15:20,HAN,19:10,4.477.218 VND/khách,3h 50m
+Vietnam Airlines,SGN,05:45,HAN,09:25,4.709.420 VND/khách,3h 40m
+Vietnam Airlines,SGN,16:00,HAN,19:40,4.709.420 VND/khách,3h 40m
+Vietnam Airlines,SGN,06:50,HAN,10:25,4.970.164 VND/khách,3h 35m
+Vietnam Airlines,SGN,09:15,HAN,13:25,4.970.164 VND/khách,4h 10m
+Vietnam Airlines,SGN,11:00,HAN,15:10,4.970.164 VND/khách,4h 10m
+Vietnam Airlines,SGN,13:05,HAN,17:20,5.814.173 VND/khách,4h 15m
+Vietravel Airlines,DAD,08:30,HAN,09:50,1.283.194 VND/khách,1h 20m
+VietJet Air,DAD,23:15,HAN,00:35,895.957 VND/khách,1h 20m
+Bamboo Airways,DAD,21:55,HAN,23:20,928.216 VND/khách,1h 25m
+VietJet Air,DAD,05:30,HAN,06:50,1.112.600 VND/khách,1h 20m
+VietJet Air,DAD,18:40,HAN,20:00,1.242.200 VND/khách,1h 20m
+VietJet Air,DAD,17:35,HAN,18:55,1.376.950 VND/khách,1h 20m
+Vietnam Airlines,DAD,21:05,HAN,22:30,1.420.732 VND/khách,1h 25m
+Bamboo Airways,DAD,07:40,HAN,09:05,1.475.625 VND/khách,1h 25m
+Vietnam Airlines,DAD,20:20,HAN,21:45,1.741.377 VND/khách,1h 25m
+Vietnam Airlines,DAD,20:30,HAN,21:55,1.741.377 VND/khách,1h 25m
+Vietnam Airlines,DAD,18:15,HAN,19:40,2.214.302 VND/khách,1h 25m
+Vietnam Airlines,DAD,17:45,HAN,19:10,2.354.170 VND/khách,1h 25m
+VietJet Air,DAD,13:50,HAN,15:10,2.419.581 VND/khách,1h 20m
+VietJet Air,DAD,17:45,HAN,19:05,2.419.581 VND/khách,1h 20m
+Vietnam Airlines,DAD,06:45,HAN,08:10,2.424.711 VND/khách,1h 25m
+Vietnam Airlines,DAD,08:00,HAN,09:25,2.424.711 VND/khách,1h 25m
+VietJet Air,DAD,06:30,HAN,07:50,2.441.000 VND/khách,1h 20m
+VietJet Air,DAD,06:55,HAN,08:15,2.441.000 VND/khách,1h 20m
+Vietnam Airlines,DAD,12:00,HAN,13:25,2.533.190 VND/khách,1h 25m
+Vietnam Airlines,DAD,09:00,HAN,10:25,2.585.965 VND/khách,1h 25m
+Vietnam Airlines,DAD,09:45,HAN,11:10,2.585.965 VND/khách,1h 25m
+Vietnam Airlines,DAD,13:00,HAN,14:25,2.585.965 VND/khách,1h 25m
+Vietnam Airlines,DAD,13:45,HAN,15:10,2.585.965 VND/khách,1h 25m
+Vietnam Airlines,DAD,16:35,HAN,18:05,2.585.965 VND/khách,1h 30m
+Bamboo Airways,DAD,23:00,HAN,09:20,3.992.206 VND/khách,10h 20m
+Vietnam Airlines,DAD,12:00,HAN,01:05,4.848.577 VND/khách,37h 5m
+Vietnam Airlines,DAD,07:45,HAN,01:05,4.848.577 VND/khách,41h 20m
+Vietravel Airlines,HAN,23:55,SGN,02:10,1.629.645 VND/khách,2h 15m
+VietJet Air,HAN,21:15,SGN,23:20,1.674.200 VND/khách,2h 5m
+Vietravel Airlines,HAN,20:10,SGN,22:25,1.786.107 VND/khách,2h 15m
+VietJet Air,HAN,15:00,SGN,17:00,1.798.962 VND/khách,2h 0m
+VietJet Air,HAN,16:25,SGN,18:30,1.798.962 VND/khách,2h 5m
+VietJet Air,HAN,15:35,SGN,17:45,1.798.962 VND/khách,2h 10m
+VietJet Air,HAN,18:30,SGN,20:40,1.798.962 VND/khách,2h 10m
+VietJet Air,HAN,19:35,SGN,21:45,1.798.962 VND/khách,2h 10m
+Bamboo Airways,HAN,23:55,SGN,02:05,1.810.900 VND/khách,2h 10m
+Bamboo Airways,HAN,16:15,SGN,18:25,2.011.651 VND/khách,2h 10m
+Bamboo Airways,HAN,18:20,SGN,20:30,2.011.651 VND/khách,2h 10m
+VietJet Air,HAN,13:35,SGN,15:45,2.136.936 VND/khách,2h 10m
+VietJet Air,HAN,22:40,SGN,00:50,2.136.936 VND/khách,2h 10m
+Vietnam Airlines,HAN,23:00,SGN,01:10,2.183.418 VND/khách,2h 10m
+Bamboo Airways,HAN,13:35,SGN,15:45,2.202.054 VND/khách,2h 10m
+VietJet Air,HAN,13:00,SGN,15:10,2.309.445 VND/khách,2h 10m
+Vietravel Airlines,HAN,10:50,SGN,12:55,2.356.074 VND/khách,2h 5m
+Vietnam Airlines,HAN,21:10,SGN,23:25,2.365.553 VND/khách,2h 15m
+Vietnam Airlines,HAN,15:25,SGN,17:40,2.466.069 VND/khách,2h 15m
+Vietnam Airlines,HAN,14:05,SGN,16:15,2.665.910 VND/khách,2h 10m
+Vietnam Airlines,HAN,17:05,SGN,19:15,2.665.910 VND/khách,2h 10m
+Vietnam Airlines,HAN,17:30,SGN,19:40,2.909.380 VND/khách,2h 10m
+Vietnam Airlines,HAN,22:35,SGN,00:45,2.909.380 VND/khách,2h 10m
+Vietnam Airlines,HAN,17:55,SGN,20:05,2.934.693 VND/khách,2h 10m
+Vietnam Airlines,HAN,16:55,SGN,19:10,3.150.170 VND/khách,2h 15m
+Vietnam Airlines,HAN,09:45,SGN,11:55,3.163.384 VND/khách,2h 10m
+Bamboo Airways,HAN,10:10,SGN,12:20,3.174.766 VND/khách,2h 10m
+Vietnam Airlines,HAN,13:35,SGN,15:45,3.388.970 VND/khách,2h 10m
+Vietnam Airlines,HAN,14:00,SGN,16:10,3.388.970 VND/khách,2h 10m
+Vietnam Airlines,HAN,19:05,SGN,21:15,3.390.960 VND/khách,2h 10m
+Vietravel Airlines,HAN,08:45,SGN,11:00,3.537.802 VND/khách,2h 15m
+Vietnam Airlines,HAN,08:00,SGN,10:10,3.591.950 VND/khách,2h 10m
+Vietnam Airlines,HAN,15:00,SGN,17:10,3.591.950 VND/khách,2h 10m
+VietJet Air,HAN,14:45,SGN,16:50,3.664.213 VND/khách,2h 5m
+VietJet Air,HAN,20:20,SGN,22:25,3.664.213 VND/khách,2h 5m
+VietJet Air,HAN,09:30,SGN,11:40,3.664.213 VND/khách,2h 10m
+VietJet Air,HAN,10:15,SGN,12:25,3.664.213 VND/khách,2h 10m
+VietJet Air,HAN,17:25,SGN,19:35,3.664.213 VND/khách,2h 10m
+VietJet Air,HAN,21:55,SGN,00:05,3.664.213 VND/khách,2h 10m
+VietJet Air,HAN,23:45,SGN,01:55,3.664.213 VND/khách,2h 10m
+VietJet Air,HAN,05:30,SGN,07:40,3.683.000 VND/khách,2h 10m
+VietJet Air,HAN,06:35,SGN,08:45,3.683.000 VND/khách,2h 10m
+Vietnam Airlines,HAN,16:00,SGN,18:10,3.743.842 VND/khách,2h 10m
+Vietnam Airlines,HAN,07:15,SGN,09:25,3.795.646 VND/khách,2h 10m
+Vietnam Airlines,HAN,22:00,SGN,00:10,3.795.646 VND/khách,2h 10m
+Vietnam Airlines,HAN,06:30,SGN,08:40,3.871.187 VND/khách,2h 10m
+Vietnam Airlines,HAN,07:00,SGN,09:10,3.871.187 VND/khách,2h 10m
+Vietnam Airlines,HAN,09:00,SGN,11:10,3.871.187 VND/khách,2h 10m
+Vietnam Airlines,HAN,11:00,SGN,13:10,3.871.187 VND/khách,2h 10m
+Vietnam Airlines,HAN,20:05,SGN,22:20,3.871.187 VND/khách,2h 15m
+Vietnam Airlines,HAN,20:15,SGN,22:30,3.871.187 VND/khách,2h 15m
+Vietnam Airlines,HAN,21:00,SGN,23:15,3.871.187 VND/khách,2h 15m
+"Vietravel Airlines, VietJet Air",HAN,06:25,SGN,21:25,2.604.308 VND/khách,15h 0m
+"Vietravel Airlines, VietJet Air",HAN,06:25,SGN,22:30,2.604.308 VND/khách,16h 5m
+"VietJet Air, Bamboo Airways",HAN,23:40,SGN,00:30,2.623.753 VND/khách,24h 50m
+"Bamboo Airways, VietJet Air",HAN,05:45,SGN,21:25,2.684.774 VND/khách,15h 40m
+"Bamboo Airways, VietJet Air",HAN,05:45,SGN,22:30,2.684.774 VND/khách,16h 45m
+"Vietravel Airlines, Bamboo Airways",HAN,06:25,SGN,00:30,2.701.763 VND/khách,18h 5m
+Bamboo Airways,HAN,05:45,SGN,00:30,2.782.229 VND/khách,18h 45m
+VietJet Air,HAN,07:20,SGN,21:25,2.798.007 VND/khách,14h 5m
+VietJet Air,HAN,07:20,SGN,22:30,2.798.007 VND/khách,15h 10m
+VietJet Air,HAN,15:45,SGN,21:25,2.818.707 VND/khách,5h 40m
+VietJet Air,HAN,15:45,SGN,22:30,2.818.707 VND/khách,6h 45m
+"VietJet Air, Vietnam Airlines",HAN,14:50,SGN,22:30,2.923.813 VND/khách,7h 40m
+VietJet Air,HAN,16:35,SGN,21:25,2.932.757 VND/khách,4h 50m
+VietJet Air,HAN,16:35,SGN,22:30,2.932.757 VND/khách,5h 55m
+"Vietravel Airlines, VietJet Air",HAN,06:25,SGN,14:55,3.000.742 VND/khách,8h 30m
+VietJet Air,HAN,07:20,SGN,14:55,3.194.441 VND/khách,7h 35m
+Bamboo Airways,HAN,12:00,SGN,00:30,3.617.514 VND/khách,12h 30m
+Vietnam Airlines,HAN,16:30,SGN,20:35,4.148.122 VND/khách,4h 5m
+Vietnam Airlines,HAN,19:45,SGN,23:35,4.867.542 VND/khách,3h 50m
+Vietnam Airlines,HAN,08:15,SGN,12:30,4.960.866 VND/khách,4h 15m
+Vietnam Airlines,HAN,07:00,SGN,11:25,5.478.567 VND/khách,4h 25m
+Vietravel Airlines,DAD,11:05,SGN,12:35,3.061.885 VND/khách,1h 30m
+VietJet Air,DAD,08:40,SGN,09:55,1.545.807 VND/khách,1h 15m
+VietJet Air,DAD,20:05,SGN,21:25,1.545.807 VND/khách,1h 20m
+VietJet Air,DAD,07:40,SGN,09:05,1.545.807 VND/khách,1h 25m
+VietJet Air,DAD,21:05,SGN,22:30,1.545.807 VND/khách,1h 25m
+Bamboo Airways,DAD,23:00,SGN,00:30,1.643.262 VND/khách,1h 30m
+VietJet Air,DAD,13:30,SGN,14:55,1.933.400 VND/khách,1h 25m
+VietJet Air,DAD,18:20,SGN,19:45,2.106.200 VND/khách,1h 25m
+Bamboo Airways,DAD,08:25,SGN,09:55,2.380.040 VND/khách,1h 30m
+Vietnam Airlines,DAD,21:30,SGN,23:00,2.407.900 VND/khách,1h 30m
+Vietnam Airlines,DAD,21:45,SGN,23:15,2.407.900 VND/khách,1h 30m
+VietJet Air,DAD,11:10,SGN,12:30,2.419.581 VND/khách,1h 20m
+Vietnam Airlines,DAD,07:45,SGN,09:15,2.585.965 VND/khách,1h 30m
+Vietnam Airlines,DAD,12:00,SGN,13:35,2.585.965 VND/khách,1h 35m
+Vietravel Airlines,DAD,11:05,SGN,12:35,3.061.885 VND/khách,1h 30m
+VietJet Air,DAD,05:30,SGN,17:45,2.921.562 VND/khách,12h 15m
+VietJet Air,DAD,05:30,SGN,18:30,2.921.562 VND/khách,13h 0m
+VietJet Air,DAD,05:30,SGN,20:40,2.921.562 VND/khách,15h 10m
+VietJet Air,DAD,17:35,SGN,23:20,3.072.122 VND/khách,5h 45m
+Bamboo Airways,DAD,07:40,SGN,18:25,3.642.958 VND/khách,10h 45m
+Vietnam Airlines,DAD,17:30,SGN,22:30,3.904.717 VND/khách,5h 0m
+Vietnam Airlines,DAD,20:30,SGN,01:10,3.968.452 VND/khách,4h 40m
+Vietnam Airlines,DAD,20:20,SGN,01:10,3.968.452 VND/khách,4h 50m
+Bamboo Airways,DAD,07:40,SGN,15:45,4.056.652 VND/khách,8h 5m
+Vietnam Airlines,DAD,17:30,SGN,21:25,4.103.735 VND/khách,3h 55m
+Vietnam Airlines,DAD,06:45,SGN,11:55,5.856.116 VND/khách,5h 10m
+Vietnam Airlines,DAD,13:00,SGN,17:40,6.226.473 VND/khách,4h 40m
+Vietnam Airlines,DAD,16:35,SGN,21:15,6.226.473 VND/khách,4h 40m
+Vietnam Airlines,DAD,17:45,SGN,22:30,6.226.473 VND/khách,4h 45m
+Vietnam Airlines,DAD,18:15,SGN,23:15,6.226.473 VND/khách,5h 0m
+VietJet Air,HAN,23:40,DAD,01:00,1.242.200 VND/khách,1h 20m
+Vietravel Airlines,HAN,06:25,DAD,07:45,1.048.501 VND/khách,1h 20m
+Bamboo Airways,HAN,05:45,DAD,07:10,1.128.967 VND/khách,1h 25m
+VietJet Air,HAN,07:20,DAD,08:40,1.242.200 VND/khách,1h 20m
+VietJet Air,HAN,15:45,DAD,17:05,1.242.200 VND/khách,1h 20m
+VietJet Air,HAN,16:35,DAD,17:55,1.376.950 VND/khách,1h 20m
+Vietnam Airlines,HAN,23:10,DAD,00:35,1.425.954 VND/khách,1h 25m
+VietJet Air,HAN,21:25,DAD,22:45,1.545.807 VND/khách,1h 20m
+Bamboo Airways,HAN,12:00,DAD,13:25,1.643.262 VND/khách,1h 25m
+VietJet Air,HAN,12:00,DAD,13:20,1.659.596 VND/khách,1h 20m
+Vietnam Airlines,HAN,06:00,DAD,07:25,2.212.548 VND/khách,1h 25m
+Vietnam Airlines,HAN,07:45,DAD,09:10,2.323.073 VND/khách,1h 25m
+Vietnam Airlines,HAN,11:45,DAD,13:10,2.323.073 VND/khách,1h 25m
+VietJet Air,HAN,19:35,DAD,20:55,2.419.581 VND/khách,1h 20m
+VietJet Air,HAN,19:55,DAD,21:15,2.419.581 VND/khách,1h 20m
+Vietnam Airlines,HAN,07:00,DAD,08:25,2.422.790 VND/khách,1h 25m
+VietJet Air,HAN,05:05,DAD,06:25,2.441.000 VND/khách,1h 20m
+Vietnam Airlines,HAN,18:20,DAD,19:45,2.533.190 VND/khách,1h 25m
+Vietnam Airlines,HAN,08:15,DAD,09:40,2.547.152 VND/khách,1h 25m
+Vietnam Airlines,HAN,10:00,DAD,11:25,2.553.170 VND/khách,1h 25m
+Vietravel Airlines,SGN,08:55,DAD,10:20,1.048.501 VND/khách,1h 25m
+VietJet Air,SGN,06:50,DAD,08:10,1.112.600 VND/khách,1h 20m
+Vietravel Airlines,SGN,12:05,DAD,13:25,1.182.611 VND/khách,1h 20m
+Bamboo Airways,SGN,09:05,DAD,10:30,1.218.994 VND/khách,1h 25m
+VietJet Air,SGN,09:35,DAD,10:55,1.242.200 VND/khách,1h 20m
+VietJet Air,SGN,11:40,DAD,13:00,1.242.200 VND/khách,1h 20m
+VietJet Air,SGN,16:15,DAD,17:35,1.242.200 VND/khách,1h 20m
+VietJet Air,SGN,18:15,DAD,19:35,1.242.200 VND/khách,1h 20m
+VietJet Air,SGN,13:15,DAD,14:40,1.242.200 VND/khách,1h 25m
+VietJet Air,SGN,19:15,DAD,20:35,1.376.950 VND/khách,1h 20m

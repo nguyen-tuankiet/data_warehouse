@@ -22,19 +22,14 @@ def init_sqlite_db():
             connection.execute("""
                 CREATE TABLE IF NOT EXISTS flights_metadata (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
-                flight_code TEXT,
                 airline TEXT,
-                departure_time TEXT,
-                arrival_time TEXT,
-                duration_minutes INTEGER,
-                price REAL,
-                stops INTEGER,
                 departure_airport TEXT,
-                arrival_airport TEXT,
-                currency TEXT,
-                source TEXT,
-                route TEXT
-                            );
+                departure_time TEXT,
+                destination_airport TEXT,
+                destination_time TEXT,
+                duration_time INTEGER,
+                price REAL
+                );
             """)
     except sqlite3.Error as e:
         logging.error(f"Error initializing SQLite database: {e}")

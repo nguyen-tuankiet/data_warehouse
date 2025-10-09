@@ -49,16 +49,7 @@ DB_USE_SSL=false
 ```
 ### 4. Tải file isrgrootx1.pem lưu trong thư mục góc
 
-### 5. Cách chạy project:
-
-1. Chạy từng web
-
-```bash
-   python src/main.py --source Traveloka.com --origin SGN --destination HAN --date 2025-10-09
-   python src/main.py --source Booking.com --origin SGN --destination HAN --date 2025-10-09
-   python src/main.py --source Agoda.com --origin SGN --destination HAN --date 2025-10-09
-```
-2. Chạy 1 lần 3 web
+### 5. Cách chạy project: 
 ```bash
 python src/main.py
 python -m src.main

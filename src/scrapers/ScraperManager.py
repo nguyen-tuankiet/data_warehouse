@@ -17,25 +17,14 @@ class ScraperManager:
             scraper = None
 
             match source_name:
-                case DataSource.BOOKING_DATA_SRC.value :
-                    scraper = BookingApiScraper()
-
-                case DataSource.AGODA_DATA_SRC.value:
-                    scraper = AgodaScraperV2()
-
                 case DataSource.TRAVELOKA_DATA_SRC.value:
                     scraper = TravelScraperV2(
                         source_name,
                         config.get('url')
                     )
 
-            if not scraper:
-                logging.error(f"Scraper class {config.get('scraper_class', '')} not found")
-                return []
-
             flights =  scraper.scrape_flights(routes, date)
             return flights
-
         except Exception:
             return []
 

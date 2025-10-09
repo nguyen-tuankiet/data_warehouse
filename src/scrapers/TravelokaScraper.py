@@ -42,22 +42,14 @@ class TravelScraperV2:
 
                 flight_cards = soup.select(flight_card_selector)
                 if not flight_cards:
-                    raise ValueError("Could not find any flight cards on the page after scrolling.")
+                    logging.warning(f"No flights found for route: {r}")
 
                 for card in flight_cards:
                     flight_data = self.parse_flight_card(card, search_date)
-                    if flight_data:
-                        flight_data.update({
-                            "departure_airport": origin,
-                            "arrival_airport": destination,
-                            "currency": "VND",
-                            "source": self.source_name,
-                            "route": f"{origin}-{destination}",
-                        })
-                        scraped_flights.append(flight_data)
+                    scraped_flights.append(flight_data)
 
         except Exception as e:
-            logging.error(f"Error occurred while scraping flights: {e}")
+            logging.error(f"Error occurred while scraping flights: {e}", exc_info=True)
         finally:
             if driver:
                 driver.quit()
@@ -99,47 +91,51 @@ class TravelScraperV2:
 
     def parse_flight_card(self, card_soup, search_date):
 
-        card_text = card_soup.get_text(" ", strip=True)
-        # 1. Trích xuất Hãng bay (Airline)
         airline = None
-        # Ưu tiên các tên đầy đủ để tránh nhầm lẫn
-        airline_patterns = [
-            r"(VietJet Air|Vietjet Air|Vietnam Airlines|Bamboo Airways|Pacific Airlines|Vietravel Airlines)",
-            r"(VietJet|Vietjet|Jetstar)",
-            r"(VN|VJ|QH|BL|VU)" # Mã hãng bay
-        ]
-        for pattern in airline_patterns:
-            match = re.search(pattern, card_text, re.I)
-            if match:
-                airline = match.group(1).strip()
-                break
-        if not airline: return None
+        departure_airport = None
+        departure_time = None
+        destination_airport = None
+        destination_time = None
+        price = None
+        duration_time = None
 
-        # 2. Trích xuất Giờ bay
-        time_matches = re.findall(r"(\d{2}:\d{2})", card_text)
-        if len(time_matches) < 2: return None
-        departure_time_str, arrival_time_str = time_matches[0], time_matches[1]
+        # Get airline
+        airline_div = card_soup.select_one("div.css-901oao.css-cens5h.r-uh8wd5.r-majxgm.r-fdjqy7")
+        airline = airline_div.get_text(strip=True) if airline_div else None
 
-        # 3. Trích xuất Giá vé (tìm giá cuối cùng trong thẻ)
-        price_matches = re.findall(r"([\d.,]+)\s*VND", card_text)
-        if not price_matches: return None
-        price = int(re.sub(r'[.,]', '', price_matches[-1]))
 
-        # 4. Xử lý và định dạng dữ liệu
-        dep_dt = datetime.strptime(f"{search_date.strftime('%Y-%m-%d')} {departure_time_str}", '%Y-%m-%d %H:%M')
-        arr_dt = datetime.strptime(f"{search_date.strftime('%Y-%m-%d')} {arrival_time_str}", '%Y-%m-%d %H:%M')
-        if arr_dt < dep_dt:
-            arr_dt += timedelta(days=1)
-        duration_minutes = int((arr_dt - dep_dt).total_seconds() / 60)
-        
-        flight_number = f"{airline.split()[0].upper()}-{dep_dt.strftime('%H%M')}"
+        depart_block = card_soup.select_one('div.css-1dbjc4n.r-1habvwh.r-eqz5dr.r-9aw3ui.r-knv0ih')
+        dest_block = card_soup.select_one('div.css-1dbjc4n.r-obd0qt.r-eqz5dr.r-9aw3ui.r-knv0ih:not(.r-ggk5by)')
 
-        return {
-            "flight_code": flight_number,
+        # depart_block
+        dep_children = depart_block.find_all("div", recursive=False)
+        if len(dep_children) >= 2:
+            departure_time = dep_children[0].get_text(strip=True)
+            departure_airport = dep_children[1].get_text(strip=True)
+
+        # destination block
+        dest_children = dest_block.find_all("div", recursive=False)
+        if len(dest_block) >= 2:
+            destination_time = dest_children[0].get_text(strip=True)
+            destination_airport = dest_children[1].get_text(strip=True)
+
+        # Price
+        price_tag = card_soup.select_one('[data-testid="label_fl_inventory_price"]')
+        price = price_tag.get_text(strip=True) if price_tag else None
+
+        # Duration time
+        duration_tag = card_soup.select_one('div.css-901oao.r-uh8wd5.r-majxgm.r-1p4rafz.r-fdjqy7')
+        duration_time = duration_tag.get_text(strip=True) if duration_tag else None
+
+
+        flight =  {
             "airline": airline,
-            "departure_time": dep_dt.strftime('%Y-%m-%d %H:%M:%S'),
-            "arrival_time": arr_dt.strftime('%Y-%m-%d %H:%M:%S'),
-            "duration_minutes": duration_minutes,
-            "price": float(price),
-            "stops": 0,
+            "departure_airport": departure_airport,
+            "departure_time": departure_time,
+            "destination_airport": destination_airport,
+            "destination_time": destination_time,
+            "price": price,
+            "duration_time": duration_time,
         }
+
+        return flight
