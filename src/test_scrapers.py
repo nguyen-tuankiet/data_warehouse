@@ -141,7 +141,7 @@ def test_field_mappings():
     """Test field mappings"""
     print("\n=== Testing Field Mappings ===")
     try:
-        from src.etl.field_mapper import FieldMapper
+        from src.transform.field_mapper import FieldMapper
         
         for source in ['Booking.com', 'Agoda', 'Traveloka']:
             mapper = FieldMapper(source)

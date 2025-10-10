@@ -11,6 +11,8 @@ from src.config.db_manager import get_airport
 from src.helpper.hepper import buidl_origin_destination
 from rich.logging import RichHandler
 
+from src.transform.transform_data import transform_data
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(message)s",
@@ -108,6 +110,7 @@ def load_csv_to_sqlite(file_path):
 
 
 if __name__ == "__main__":
-    init_sqlite_db()
-    clear_sqlite_db()
-    scrape_single_source(DataSource.TRAVELOKA_DATA_SRC)
+    # init_sqlite_db()
+    # clear_sqlite_db()
+    # scrape_single_source(DataSource.TRAVELOKA_DATA_SRC)
+    transform_data()
