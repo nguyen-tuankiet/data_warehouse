@@ -92,7 +92,7 @@ def load_csv_to_sqlite(file_path):
             insert_query = """
                                INSERT INTO flights_metadata (
                                airline, departure_airport, departure_time,
-                                   destination_airport, destination_time, duration_time, price,
+                                   destination_airport, destination_time, duration_time, price
                                )
                                VALUES (?, ?, ?, ?, ?, ?, ?) \
                                """
@@ -113,4 +113,5 @@ if __name__ == "__main__":
     # init_sqlite_db()
     # clear_sqlite_db()
     # scrape_single_source(DataSource.TRAVELOKA_DATA_SRC)
-    transform_data()
+    # transform_data()
+    load_csv_to_sqlite("data/scrap_20251009/Traveloka.com.csv")
