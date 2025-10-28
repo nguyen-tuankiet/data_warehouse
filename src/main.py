@@ -1,52 +1,50 @@
 import csv
-import logging
 import os
 from datetime import datetime, timedelta
-from src.config.db_manager import get_active_configs, log_message
-from src.scrapers.ScraperManager import ScraperManager
-from src.config.db_connector import get_db_connection
-from src.config.sqlite_connector import get_sqlite_connection, clear_sqlite_db, init_sqlite_db
-from src.constant.DataSource import DataSource
-from src.config.db_manager import get_airport
-from src.helpper.hepper import buidl_origin_destination
-from rich.logging import RichHandler
 
+from src.config.sqlite_connector import get_sqlite_connection, clear_flight_metadata,\
+    get_source_by_name, get_airport
+from src.helpper.hepper import buidl_origin_destination
+import argparse
+from src.helpper.logger_config import logger
 from src.transform.transform_data import transform_data
 
-logging.basicConfig(
-    level=logging.INFO,
-    format="%(message)s",
-    datefmt="[%X]",
-    handlers=[RichHandler(rich_tracebacks=True)]
-)
-logger = logging.getLogger(__name__)
 
+def scrape_single_source(source_name, search_date):
+    # logger.info(f"Scraping data from {source_name}...")
+    # # Load config
+    # airport_code = get_airport()
+    # web_source = get_source_by_name(source_name)
+    #
+    #
+    # if web_source is None:
+    #     logger.error("Source name not found in database. Program terminated.")
+    #     return None
+    # if search_date < datetime.now():
+    #     logger.error("Date cannot be in the past. Program terminated.")
+    #     return None
+    #
+    # routes = buidl_origin_destination(airport_code)
+    #
+    # scraperManager = ScraperManager()
+    # flights = scraperManager.scrape_single_source(web_source, routes, search_date)
+    # if not flights:
+    #     logger.warning("No flights found.")
+    #     return None
+    # csv_path = save_to_csv(flights, source_name)
+    # load_csv_to_sqlite(csv_path)
+    #
 
+    # load_csv_to_sqlite("data/scrap_20251029/Traveloka.com.csv")
 
-def scrape_single_source(data_src: DataSource):
-    connection = get_db_connection()
-    if not connection:
-        logger.error("Cannot connect to database. Program terminated.")
-        return None
-    search_date = datetime.now() + timedelta(days=1)
-    airport_code = get_airport(connection)
-    routes = buidl_origin_destination(airport_code)
-    configs = get_active_configs(connection)
-
-    for config in configs:
-        if config.get('source_name') == data_src.value:
-            scraperManager = ScraperManager()
-            flights = scraperManager.scrape_single_source(config, routes, search_date)
-            csv_path=  save_to_csv(flights, data_src.value)
-            load_csv_to_sqlite(csv_path)
-
+    transform_data()
     #         TODO: Create log
 
 
     return None
 
 
-def save_to_csv(flights, file_name, base_folder="data"):
+def save_to_csv(flights, source_name, base_folder="data"):
     if not flights:
         logger.warning("No flights to save to CSV.")
         return
@@ -55,8 +53,15 @@ def save_to_csv(flights, file_name, base_folder="data"):
     folder_name= f"scrap_{today_str}"
     folder_path = os.path.join(base_folder, folder_name)
     os.makedirs(folder_path, exist_ok=True)
-    file_name = f"{file_name}.csv"
+    file_name = f"{source_name}.csv"
     file_path = os.path.join(folder_path, file_name)
+
+    # Thêm ngày giờ và source vào từng dòng flight
+    saved_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    for flight in flights:
+        flight["crawled_at"] = saved_at
+        flight["source"] = source_name
+
 
     column = flights[0].keys()
     with open(file_path, 'w', newline='', encoding='utf-8') as output_file:
@@ -67,8 +72,11 @@ def save_to_csv(flights, file_name, base_folder="data"):
     logger.info(f"Saved {len(flights)} flights to CSV file: {file_name}")
     return file_path
 
-def load_csv_to_sqlite(file_path):
 
+
+
+def load_csv_to_sqlite(file_path):
+    clear_flight_metadata()
     sqlite_connector = get_sqlite_connection()
     if not sqlite_connector:
         logger.error("Cannot connect to SQLite database. Program terminated.")
@@ -85,22 +93,25 @@ def load_csv_to_sqlite(file_path):
                     row['departure_time'],
                     row['destination_airport'],
                     row['destination_time'],
+                    row['duration_time'],
                     row['price'],
-                    row['duration_time']
+                    row['source'],
+                    row['crawled_at'],
+
                 ))
 
             insert_query = """
                                INSERT INTO flights_metadata (
                                airline, departure_airport, departure_time,
-                                   destination_airport, destination_time, duration_time, price
+                                   destination_airport, destination_time, duration_time, price, source, crawled_at
                                )
-                               VALUES (?, ?, ?, ?, ?, ?, ?) \
+                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) \
                                """
 
             cursor = sqlite_connector.cursor()
             cursor.executemany(insert_query, rows_to_insert)
             sqlite_connector.commit()
-
+            logger.info(f"Inserted {cursor.rowcount} rows into flights_metadata table.")
     except Exception as e:
         logger.error(f"Error reading CSV file: {e}")
 
@@ -110,8 +121,16 @@ def load_csv_to_sqlite(file_path):
 
 
 if __name__ == "__main__":
-    # init_sqlite_db()
-    # clear_sqlite_db()
-    # scrape_single_source(DataSource.TRAVELOKA_DATA_SRC)
-    # transform_data()
-    load_csv_to_sqlite("data/scrap_20251009/Traveloka.com.csv")
+
+
+    parser = argparse.ArgumentParser(description='Scrape and transform data from multiple sources')
+    parser.add_argument('-s', '--source', type=str, help='Source name to scrape', required=True)
+    parser.add_argument('-d', '--date',  type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
+                        help='Date to scrape', required= False, default=datetime.now() + timedelta(days=1))
+
+
+    args = parser.parse_args()
+    source = args.source
+    date = args.date
+
+    scrape_single_source(source, date)

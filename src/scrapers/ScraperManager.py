@@ -1,31 +1,31 @@
 from typing import List, Dict
 from datetime import datetime
 import logging
-from .BookingScraper import BookingApiScraper
-from .AgodaScraper import AgodaScraperV2
 from .TravelokaScraper import TravelScraperV2
 from ..constant.DataSource import DataSource
-
+from src.helpper.logger_config import logger
 
 class ScraperManager:
-    def __init__(self):
-        self.logger = logging.getLogger(__name__)
 
-    def scrape_single_source(self, config, routes, date) -> List[Dict]:
+
+
+    def scrape_single_source(self, source, routes, date) -> List[Dict]:
+        logger.info(source)
+
         try:
-            source_name = config.get('source_name', '')
+            source_name = source["source_name"]
             scraper = None
-
             match source_name:
                 case DataSource.TRAVELOKA_DATA_SRC.value:
                     scraper = TravelScraperV2(
                         source_name,
-                        config.get('url')
+                        source["url"]
                     )
 
             flights =  scraper.scrape_flights(routes, date)
             return flights
-        except Exception:
+        except Exception as e:
+            logger.error(f"Error scraping {e}")
             return []
 
 
@@ -116,13 +116,3 @@ class ScraperManager:
         return True
 
 
-    def get_scraper_status(self) -> Dict[str, bool]:
-        """Lấy trạng thái của các scraper"""
-        status = {}
-        for name, scraper in self.scrapers.items():
-            try:
-                # Simple test to check if scraper is working
-                status[name] = hasattr(scraper, 'scrape_flights')
-            except:
-                status[name] = False
-        return status

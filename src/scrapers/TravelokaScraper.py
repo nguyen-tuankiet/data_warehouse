@@ -5,12 +5,10 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from datetime import datetime, timedelta
-import logging
-import re
 import random
 from bs4 import BeautifulSoup
-import traceback
+from src.helpper.logger_config import logger
+
 
 class TravelScraperV2:
     def __init__(self, source_name, base_url ):
@@ -28,7 +26,7 @@ class TravelScraperV2:
                 origin = r["origin"]
                 destination = r["destination"]
                 url = self.build_search_url(origin, destination, search_date)
-                logging.info(f"Opening URL: {url}")
+                logger.info(f"Opening URL: {url}")
                 driver.get(url)
 
                 wait = WebDriverWait(driver, 90)
@@ -42,14 +40,14 @@ class TravelScraperV2:
 
                 flight_cards = soup.select(flight_card_selector)
                 if not flight_cards:
-                    logging.warning(f"No flights found for route: {r}")
+                    logger.warning(f"No flights found for route: {r}")
 
                 for card in flight_cards:
                     flight_data = self.parse_flight_card(card, search_date)
                     scraped_flights.append(flight_data)
 
         except Exception as e:
-            logging.error(f"Error occurred while scraping flights: {e}", exc_info=True)
+            logger.error(f"Error occurred while scraping flights: {e}", exc_info=True)
         finally:
             if driver:
                 driver.quit()
@@ -78,14 +76,14 @@ class TravelScraperV2:
         return f"https://www.traveloka.com/vi-vn/flight/fullsearch?ap={destination}.{origin}&dt={date_str}.NA&ps=1.0.0&sc=ECONOMY"
 
     def scroll_page(self, driver, max_scrolls=8):
-        print("Scrolling page to load all flights...")
+        logger.info("Scrolling page to load all flights...")
         last_height = driver.execute_script("return document.body.scrollHeight")
         for i in range(max_scrolls):
             driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
             time.sleep(random.uniform(2.0, 3.0))
             new_height = driver.execute_script("return document.body.scrollHeight")
             if new_height == last_height:
-                print(f"Scrolling stopped at attempt {i+1} as page height did not change.")
+                logger.info(f"Scrolling stopped at attempt {i+1} as page height did not change.")
                 break
             last_height = new_height
 
