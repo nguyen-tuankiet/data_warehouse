@@ -5,12 +5,16 @@ from src.helpper.logger_config import logger
 from src.config.sqlite_connector import process_missing_data, process_duplicate_data, get_batch
 import re
 
+from src.transform.update_dim import update_dim_airline
 
-def transform_data():
+airport_set = set()
+airline_set = set()
+def transform_and_load_data():
 
     # Check missing and duplicate
-    # process_missing_data()
-    # process_duplicate_data()
+    process_missing_data()
+    process_duplicate_data()
+
 
     # Standardize
     page = 0
@@ -23,17 +27,21 @@ def transform_data():
         standardized_flights = standardize_data(flights)
         logger.info(f"Standardized {len(standardized_flights)} flights")
 
+        update_dim_airline(airline_set)
+        update_dim_airline(airline_set)
 
-
-
-        # Todo: Load to data_warehouse
+        # Load to data_warehouse
         insert_flights(standardized_flights)
 
         page += 1
 
+
 def standardize_data(flights):
     standardized_flights = []
     logger.info(type(flights))
+    global airport_set
+    global airline_set
+
     for f in flights:
 
         new_flight = {
@@ -53,8 +61,11 @@ def standardize_data(flights):
         if validate_data(new_flight):
             standardized_flights.append(new_flight)
 
-    return standardized_flights
+        airport_set.add(new_flight.get("departure_airport"))
+        airport_set.add(new_flight.get("destination_airport"))
+        airline_set.add(new_flight.get("airline"))
 
+    return standardized_flights
 
 def validate_data(flight):
     required_fields = [
@@ -112,8 +123,6 @@ def validate_data(flight):
 
     return True
 
-
-
 def normalize_datetime(dt_str):
     for fmt in (
         "%d-%m-%Y : %H:%M:%S",
@@ -131,9 +140,6 @@ def normalize_datetime(dt_str):
             continue
     return None
 
-
-
-
 def parse_price(price_str):
     if not price_str:
         return None
@@ -142,8 +148,6 @@ def parse_price(price_str):
     if not digits:
         return None
     return int(''.join(digits))
-
-
 
 def parse_duration(duration_str):
     hours = 0
@@ -156,7 +160,6 @@ def parse_duration(duration_str):
     elif 'm' in duration_str:
         minutes = int(duration_str.replace('m', '').strip())
     return hours * 60 + minutes
-
 
 def parse_currency(price_str: str):
 

@@ -162,14 +162,15 @@ def get_source_by_name(name):
         logger.error(f"Error fetching source names from SQLite database: {e}")
         return None
 
-def get_airport():
+def get_airport(active = True):
     connection = get_sqlite_connection()
     if not connection:
         logger.error("Cannot connect to SQLite database. Program terminated.")
         return None
     try:
         cursor = connection.cursor()
-        airports = (cursor.execute("SELECT code FROM dim_airport where is_active = TRUE")
+        query = "SELECT code FROM dim_airport where is_active = ? "
+        airports = (cursor.execute(query, (active,))
                     .fetchall())
 
         logger.info(f"Fetched {len(airports)} airports from database.")
@@ -184,3 +185,72 @@ def get_airport():
         logger.error(f"Error fetching airport from SQLite database: {e}")
         return None
 
+
+def add_airport(airport_code):
+    connection = get_sqlite_connection()
+    if not connection:
+        logger.error("Cannot connect to SQLite database. Program terminated.")
+        return
+
+    try:
+        cursor = connection.cursor()
+        query = "INSERT INTO dim_airport (code) VALUES (?)"
+        cursor.executemany(query, [(code,) for code in airport_code])
+        connection.commit()
+        inserted = cursor.rowcount
+        logger.info(f"Inserted {inserted} new airports (duplicates ignored).")
+
+        return inserted
+    except sqlite3.Error as e:
+        logger.error(f"Error adding airport to SQLite database: {e}")
+        return 0
+
+
+
+def get_airline(active = True):
+    connection = get_sqlite_connection()
+    if not connection:
+        logger.error("Cannot connect to SQLite database. Program terminated.")
+        return None
+    try:
+        cursor = connection.cursor()
+        query = "SELECT airline_name FROM dim_airline where is_active = ? "
+        airlines = (cursor.execute(query, (active,))
+                    .fetchall())
+
+        logger.info(f"Fetched {len(airlines)} airports from database.")
+        if airlines is None :
+            logger.error("No airport found in database.")
+            return []
+
+        connection.row_factory = sqlite3.Row
+        return [row['airline_name'] for row in airlines]
+
+    except sqlite3.Error as e:
+        logger.error(f"Error fetching airport from SQLite database: {e}")
+        return None
+
+
+
+def add_airline(airline_name):
+    connection = get_sqlite_connection()
+    if not connection:
+        logger.error("Cannot connect to SQLite database. Program terminated.")
+        return
+
+    try:
+        cursor = connection.cursor()
+        query = "INSERT INTO dim_airline (airline_name) VALUES (?)"
+        cursor.executemany(query, [(name,) for name in airline_name])
+        connection.commit()
+        inserted = cursor.rowcount
+        logger.info(f"Inserted {inserted} new airline (duplicates ignored).")
+
+        return inserted
+    except sqlite3.Error as e:
+        logger.error(f"Error adding airport to SQLite database: {e}")
+        return 0
+
+
+
+print(get_airport(False))
