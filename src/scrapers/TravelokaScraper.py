@@ -20,8 +20,7 @@ class TravelScraperV2:
         scraped_flights = []
 
         try:
-            driver = self.make_driver(headless=False)
-
+            driver = self.make_driver(headless=True)
             for r in routes:
                 origin = r["origin"]
                 destination = r["destination"]
