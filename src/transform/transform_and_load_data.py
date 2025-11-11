@@ -27,6 +27,10 @@ def transform_and_load_data():
         standardized_flights = standardize_data(flights)
         logger.info(f"Standardized {len(standardized_flights)} flights")
 
+<<<<<<< HEAD
+        # update_dim_airline(airline_set)
+        # update_dim_airline(airline_set)
+=======
         updated_airline_count = update_dim_airline()
         if updated_airline_count > 0:
             logger.info(f"Updated {updated_airline_count} airlines")
@@ -39,6 +43,7 @@ def transform_and_load_data():
 
 
 
+>>>>>>> e6e2c7fc127ab48d95f8269c29e79e463ee70e82
 
         # Load to data_warehouse
         insert_flights(standardized_flights)
