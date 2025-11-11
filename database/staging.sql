@@ -1,9 +1,9 @@
 
 -- dim airport
 CREATE TABLE IF NOT EXISTS dim_airport (
-    id INT PRIMARY KEY NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL ,
     code VARCHAR(10) NOT NULL,
-    name VARCHAR(100) NOT NULL,
+    name VARCHAR(100) DEFAULT 'Unknow',
     city VARCHAR(100),
     country VARCHAR(100) DEFAULT 'Việt Nam',
     timezone VARCHAR(50) DEFAULT 'Asia/Ho_Chi_Minh',
@@ -42,8 +42,8 @@ INSERT INTO dim_airport (id, code, name, city, country, timezone, effective_date
 
 -- dim airline
 CREATE TABLE IF NOT EXISTS dim_airline (
-    id INT PRIMARY KEY NOT NULL,
-    airline_code VARCHAR(10) NOT NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    airline_code VARCHAR(10) DEFAULT 'Unknow',
     airline_name VARCHAR(100) NOT NULL,
     country VARCHAR(100),
     alliance VARCHAR(50),
@@ -121,7 +121,7 @@ INSERT INTO source (source_name, url, is_active, scraper_class) VALUES
 
 -- Logs
 CREATE TABLE IF NOT EXISTS logs (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id INTEGER  PRIMARY KEY AUTOINCREMENT,
     start_time TIMESTAMP ,
     end_time TIMESTAMP ,
     level VARCHAR(20) NOT NULL,                     -- Mức độ log (INFO, WARN, ERROR, DEBUG, TRACE)

@@ -2,10 +2,10 @@ from datetime import datetime
 
 from src.config.data_warehouse_connector import insert_flights
 from src.helpper.logger_config import logger
-from src.config.sqlite_connector import process_missing_data, process_duplicate_data, get_batch
+from src.config.sqlite_connector import process_missing_data, process_duplicate_data, get_batch, update_dim_airline, \
+    update_dim_airport
 import re
 
-from src.transform.update_dim import update_dim_airline
 
 airport_set = set()
 airline_set = set()
@@ -27,12 +27,26 @@ def transform_and_load_data():
         standardized_flights = standardize_data(flights)
         logger.info(f"Standardized {len(standardized_flights)} flights")
 
+<<<<<<< HEAD
         # update_dim_airline(airline_set)
         # update_dim_airline(airline_set)
+=======
+        updated_airline_count = update_dim_airline()
+        if updated_airline_count > 0:
+            logger.info(f"Updated {updated_airline_count} airlines")
+            #Todo: Create log
+
+        updated_airport_count = update_dim_airport()
+        if updated_airport_count > 0:
+            logger.info(f"Updated {updated_airport_count} airports")
+            #Todo: Create log
+
+
+
+>>>>>>> e6e2c7fc127ab48d95f8269c29e79e463ee70e82
 
         # Load to data_warehouse
         insert_flights(standardized_flights)
-
         page += 1
 
 
