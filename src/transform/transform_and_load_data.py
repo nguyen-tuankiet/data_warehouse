@@ -41,7 +41,7 @@ def transform_and_load_data():
 
 
         # Load to data_warehouse
-        # insert_flights(standardized_flights)
+        insert_flights(standardized_flights)
         page += 1
 
 
