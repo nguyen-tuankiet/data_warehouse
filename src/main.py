@@ -12,28 +12,28 @@ from src.transform.transform_and_load_data import transform_and_load_data
 
 
 def scrape_single_source(source_name, search_date):
-    # logger.info(f"Scraping data from {source_name}...")
-    # # Load config
-    # airport_code = get_airport()
-    # web_source = get_source_by_name(source_name)
-    #
-    #
-    # if web_source is None:
-    #     logger.error("Source name not found in database. Program terminated.")
-    #     return None
-    # if search_date < datetime.now():
-    #     logger.error("Date cannot be in the past. Program terminated.")
-    #     return None
-    #
-    # routes = buidl_origin_destination(airport_code)
-    #
-    # scraperManager = ScraperManager()
-    # flights = scraperManager.scrape_single_source(web_source, routes, search_date)
-    # if not flights:
-    #     logger.warning("No flights found.")
-    #     return None
-    # csv_path = save_to_csv(flights, source_name)
-    # load_csv_to_sqlite(csv_path)
+    logger.info(f"Scraping data from {source_name}...")
+    # Load config
+    airport_code = get_airport()
+    web_source = get_source_by_name(source_name)
+
+
+    if web_source is None:
+        logger.error("Source name not found in database. Program terminated.")
+        return None
+    if search_date < datetime.now():
+        logger.error("Date cannot be in the past. Program terminated.")
+        return None
+
+    routes = buidl_origin_destination(airport_code)
+
+    scraperManager = ScraperManager()
+    flights = scraperManager.scrape_single_source(web_source, routes, search_date)
+    if not flights:
+        logger.warning("No flights found.")
+        return None
+    csv_path = save_to_csv(flights, source_name)
+    load_csv_to_sqlite(csv_path)
 
 
     # load_csv_to_sqlite("data/scrap_20251029/Traveloka.com.csv")
