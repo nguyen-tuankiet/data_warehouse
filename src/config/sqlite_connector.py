@@ -87,8 +87,6 @@ def get_batch( page = 0, size = 500):
         rows_as_dict = [dict(r) for r in rows]  # convert row → dict
         return rows_as_dict
 
-
-
 def process_missing_data():
     connection = get_sqlite_connection()
     if not connection:
@@ -185,28 +183,6 @@ def get_airport(active = True):
         logger.error(f"Error fetching airport from SQLite database: {e}")
         return None
 
-
-def add_airport(airport_code):
-    connection = get_sqlite_connection()
-    if not connection:
-        logger.error("Cannot connect to SQLite database. Program terminated.")
-        return
-
-    try:
-        cursor = connection.cursor()
-        query = "INSERT INTO dim_airport (code) VALUES (?)"
-        cursor.executemany(query, [(code,) for code in airport_code])
-        connection.commit()
-        inserted = cursor.rowcount
-        logger.info(f"Inserted {inserted} new airports (duplicates ignored).")
-
-        return inserted
-    except sqlite3.Error as e:
-        logger.error(f"Error adding airport to SQLite database: {e}")
-        return 0
-
-
-
 def get_airline(active = True):
     connection = get_sqlite_connection()
     if not connection:
@@ -231,26 +207,97 @@ def get_airline(active = True):
         return None
 
 
-
-def add_airline(airline_name):
+def update_dim_airport():
     connection = get_sqlite_connection()
     if not connection:
         logger.error("Cannot connect to SQLite database. Program terminated.")
-        return
+        return 0;
 
+    query ="""
+           INSERT INTO dim_airport (code) 
+            SELECT T1.airport_code
+            FROM (
+                SELECT DISTINCT departure_airport AS airport_code FROM flights_metadata
+                UNION
+                SELECT DISTINCT destination_airport AS airport_code FROM flights_metadata
+            ) T1
+            LEFT JOIN dim_airport ap ON T1.airport_code = ap.code
+            WHERE ap.code IS NULL; 
+           """
+    inserted_count = 0
     try:
-        cursor = connection.cursor()
-        query = "INSERT INTO dim_airline (airline_name) VALUES (?)"
-        cursor.executemany(query, [(name,) for name in airline_name])
-        connection.commit()
-        inserted = cursor.rowcount
-        logger.info(f"Inserted {inserted} new airline (duplicates ignored).")
-
-        return inserted
+        with connection:
+            cursor = connection.cursor()
+            cursor.execute(query)
+            connection.commit()
+            inserted_count = cursor.rowcount;
+            logger.info(f"Inserted {inserted_count} rows into dim_airport table.")
+            return inserted_count;
     except sqlite3.Error as e:
-        logger.error(f"Error adding airport to SQLite database: {e}")
-        return 0
+        logger.error(f"Error updating dim_airport table: {e}")
+        return inserted_count;
+
+
+def update_dim_airline():
+    connection = get_sqlite_connection()
+    if not connection:
+        logger.error("Cannot connect to SQLite database. Program terminated.")
+        return 0;
+    query ="""
+           INSERT INTO dim_airline (airline_name) 
+            SELECT DISTINCT airline
+            FROM flights_metadata as f 
+            LEFT JOIN dim_airline as al ON al.airline_name = f.airline
+            WHERE al.airline_name IS NULL; 
+    """
+    inserted_count = 0
+    try:
+        with connection:
+            cursor = connection.cursor()
+
+            # Lấy tất cả các chuỗi hãng bay thô
+            cursor.execute("SELECT DISTINCT airline FROM flights_metadata WHERE airline IS NOT NULL")
+            raw_airlines = cursor.fetchall()
+
+            new_airlines_to_insert = set()
+
+            # 3. Xử lý logic tách chuỗi trong Python (Vì SQL/SQLite không làm được)
+            for row in raw_airlines:
+                raw_string = row[0]
+                # Tách chuỗi bằng hàm Python tiện ích
+                for single_airline in _split_and_yield(raw_string):
+                    new_airlines_to_insert.add(single_airline)
+
+            # Lấy các hãng bay đã tồn tại
+            cursor.execute("SELECT airline_name FROM dim_airline")
+            existing_airlines = {row[0] for row in cursor.fetchall()}
+
+            # Lọc ra các hãng bay cần chèn (chưa tồn tại)
+            to_insert = [(a,) for a in new_airlines_to_insert if a not in existing_airlines]
+
+            inserted_count = 0
+
+            if to_insert:
+                # 4. Chèn hàng loạt các hãng bay đã được làm sạch
+                cursor.executemany("INSERT INTO dim_airline (airline_name) VALUES (?)", to_insert)
+                inserted_count = cursor.rowcount
+
+            logger.info(
+                f"Updated dim_airline table. Inserted {inserted_count} new airlines (handling comma separation).")
+            return inserted_count
+
+    except sqlite3.Error as e:
+        logger.error(f"Error updating dim_airline table: {e}")
+        return inserted_count;
 
 
 
-print(get_airport(False))
+# Bổ sung hàm tiện ích tách chuỗi cho SQLite
+def _split_and_yield(airline_string):
+    """Tách chuỗi hãng bay (có thể chứa nhiều hãng cách nhau bởi ',') và trả về từng hãng đã được làm sạch."""
+    if not airline_string:
+        return
+    # Tách chuỗi theo dấu phẩy, loại bỏ khoảng trắng thừa
+    airlines = [a.strip() for a in airline_string.split(',') if a.strip()]
+    for airline in airlines:
+        yield airline
