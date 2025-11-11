@@ -6,9 +6,6 @@ from src.config.sqlite_connector import process_missing_data, process_duplicate_
     update_dim_airport
 import re
 
-
-airport_set = set()
-airline_set = set()
 def transform_and_load_data():
 
     # Check missing and duplicate
@@ -36,9 +33,6 @@ def transform_and_load_data():
         if updated_airport_count > 0:
             logger.info(f"Updated {updated_airport_count} airports")
             #Todo: Create log
-
-
-
 
         # Load to data_warehouse
         insert_flights(standardized_flights)

@@ -2,6 +2,7 @@
 import sqlite3
 import os
 from threading import Lock
+import pandas as pd
 
 from src.helpper.logger_config import logger
 
@@ -301,3 +302,33 @@ def _split_and_yield(airline_string):
     airlines = [a.strip() for a in airline_string.split(',') if a.strip()]
     for airline in airlines:
         yield airline
+
+
+def load_dim_date(path):
+    df = pd.read_csv(path, header=None, sep=",", engine="python")
+
+    print(df.head())
+    df_2025 = df[df[6] == 2025]
+    df_2025 = df_2025.iloc[:, [0, 1, 2, 3, 4, 6, 11, 14, 18, 19]]
+
+    # Đặt tên cột theo đúng cấu trúc bảng dim_date
+    df_2025.columns = [
+        "date_id", "full_date", "day_of_year", "month_of_year",
+        "year_num", "week_of_year", "quarter_num",
+        "year_quarter", "is_holiday", "is_weekend"
+    ]
+
+
+    connection = get_sqlite_connection()
+    if not connection:
+        logger.error("Cannot connect to SQLite database. Program terminated.")
+        return 0
+
+    df_2025.to_sql("dim_date", connection, if_exists="replace", index=False)
+
+    connection.commit()
+    connection.close()
+
+
+
+

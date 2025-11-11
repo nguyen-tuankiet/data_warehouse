@@ -2,8 +2,8 @@ import csv
 import os
 from datetime import datetime, timedelta
 
-from src.config.sqlite_connector import get_sqlite_connection, clear_flight_metadata,\
-    get_source_by_name, get_airport
+from src.config.sqlite_connector import get_sqlite_connection, clear_flight_metadata, \
+    get_source_by_name, get_airport, load_dim_date
 from src.helpper.hepper import buidl_origin_destination
 import argparse
 from src.helpper.logger_config import logger
@@ -122,13 +122,19 @@ if __name__ == "__main__":
 
 
     parser = argparse.ArgumentParser(description='Scrape and transform data from multiple sources')
-    parser.add_argument('-s', '--source', type=str, help='Source name to scrape', required=True)
+    parser.add_argument('-s', '--source', type=str, help='Source name to scrape', required=False)
     parser.add_argument('-d', '--date',  type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
                         help='Date to scrape', required= False, default=datetime.now() + timedelta(days=1))
+    parser.add_argument('--load-dim-date', action='store_true', help='Run load_dim_date ETL process')
 
 
     args = parser.parse_args()
     source = args.source
     date = args.date
+    load_dim_flag = args.load_dim_date
 
-    scrape_single_source(source, date)
+    if load_dim_flag:
+        path = "data/date_dim.csv"
+        load_dim_date(path)
+    else:
+        scrape_single_source(source, date)

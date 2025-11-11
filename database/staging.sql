@@ -85,17 +85,17 @@ INSERT INTO dim_airline (id, airline_code, airline_name, country, alliance, effe
 
 
 -- dim date
-CREATE TABLE dim_date (
-    date INT PRIMARY KEY,
-    full_date DATE NOT NULL,
-    day INT,
-    month INT,
-    year INT,
-    quarter INT,
-    weekday VARCHAR(20),
-    is_holiday BOOLEAN DEFAULT FALSE
+CREATE TABLE IF NOT EXISTS dim_date (
+    date_id INTEGER PRIMARY KEY,       -- cột 0
+    full_date TEXT NOT NULL,           -- cột 1
+    day_of_year INTEGER NOT NULL,      -- cột 2
+    month_of_year INTEGER NOT NULL,    -- cột 3
+    year_num INTEGER NOT NULL,         -- cột 4
+    week_of_year INTEGER NOT NULL,     -- cột 6
+    quarter_num INTEGER NOT NULL,      -- cột 11
+    is_holiday TEXT DEFAULT 'Non-Holiday', -- cột 18
+    is_weekend TEXT DEFAULT 'Weekday'       -- cột 19
 );
-
 
 
 
