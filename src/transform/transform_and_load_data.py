@@ -27,8 +27,8 @@ def transform_and_load_data():
         standardized_flights = standardize_data(flights)
         logger.info(f"Standardized {len(standardized_flights)} flights")
 
-        update_dim_airline(airline_set)
-        update_dim_airline(airline_set)
+        # update_dim_airline(airline_set)
+        # update_dim_airline(airline_set)
 
         # Load to data_warehouse
         insert_flights(standardized_flights)
