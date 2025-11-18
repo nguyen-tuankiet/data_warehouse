@@ -42,8 +42,7 @@ def transform_and_load_data():
 def standardize_data(flights):
     standardized_flights = []
     logger.info(type(flights))
-    global airport_set
-    global airline_set
+
 
     for f in flights:
 
@@ -63,10 +62,6 @@ def standardize_data(flights):
 
         if validate_data(new_flight):
             standardized_flights.append(new_flight)
-
-        airport_set.add(new_flight.get("departure_airport"))
-        airport_set.add(new_flight.get("destination_airport"))
-        airline_set.add(new_flight.get("airline"))
 
     return standardized_flights
 
