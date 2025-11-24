@@ -1,0 +1,163 @@
+airline,departure_airport,departure_time,destination_airport,destination_time,price,duration_time,crawled_at,source
+VietJet Air,SGN,21:05,HAN,23:10,1.574.115 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,23:25,HAN,01:35,1.462.371 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,SGN,23:15,HAN,01:25,1.517.670 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,21:45,HAN,23:55,1.574.115 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,19:35,HAN,21:45,1.592.652 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,20:10,HAN,22:20,1.592.652 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,SGN,17:10,HAN,19:20,1.654.290 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,SGN,21:25,HAN,23:35,1.654.290 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,21:50,HAN,23:55,1.690.185 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,19:15,HAN,21:25,1.690.185 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,17:35,HAN,19:45,1.767.369 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,22:00,HAN,00:05,1.799.955 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,22:05,HAN,00:10,1.799.955 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,17:55,HAN,19:55,1.831.495 VND/khách,2h 0m,2025-11-21 23:32:45,traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,18:10,HAN,20:20,1.863.812 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,21:10,HAN,23:15,1.976.070 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,06:15,HAN,08:25,1.996.366 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,10:00,HAN,12:10,1.996.366 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,08:30,HAN,10:40,2.003.080 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,09:00,HAN,11:10,2.003.080 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,SGN,05:45,HAN,07:55,2.019.600 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,17:00,HAN,19:05,2.034.775 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,21:00,HAN,23:05,2.034.775 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,21:20,HAN,23:25,2.034.775 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,23:00,HAN,01:05,2.034.775 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,06:30,HAN,08:40,2.118.894 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,05:40,HAN,07:50,2.159.986 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,13:00,HAN,15:10,2.395.811 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,14:50,HAN,17:00,2.395.811 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,07:10,HAN,09:20,2.607.626 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,10:20,HAN,12:30,2.607.626 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,SGN,13:15,HAN,15:25,2.607.626 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,15:05,HAN,17:10,2.654.660 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,06:40,HAN,08:45,2.690.480 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,15:00,HAN,17:05,2.824.976 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,16:00,HAN,18:05,2.824.976 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,17:05,HAN,19:10,2.824.976 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,12:00,HAN,14:10,2.839.164 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,14:50,HAN,16:55,3.409.865 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,04:55,HAN,07:05,3.621.800 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,11:25,HAN,13:30,3.633.149 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,09:40,HAN,11:50,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,14:55,HAN,17:05,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,18:50,HAN,21:00,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,19:50,HAN,22:00,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,20:30,HAN,22:40,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,22:45,HAN,00:55,3.633.149 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,17:00,HAN,19:15,3.633.149 VND/khách,2h 15m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,05:20,HAN,07:30,3.665.290 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,07:20,HAN,09:30,3.665.290 VND/khách,2h 10m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,06:00,HAN,08:05,3.795.925 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,07:00,HAN,09:05,3.795.925 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,07:25,HAN,09:30,3.795.925 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,07:45,HAN,09:50,3.870.550 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,10:00,HAN,12:05,4.193.925 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,09:20,HAN,11:25,4.771.025 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,18:00,HAN,20:05,5.356.258 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,12:05,HAN,14:10,5.527.697 VND/khách,2h 5m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",SGN,11:40,HAN,20:15,2.139.244 VND/khách,8h 35m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,11:40,HAN,22:15,2.172.620 VND/khách,10h 35m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,SGN,09:00,HAN,20:15,2.205.820 VND/khách,11h 15m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Bamboo Airways",SGN,11:40,HAN,19:45,2.214.704 VND/khách,8h 5m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",SGN,11:40,HAN,00:20,2.224.244 VND/khách,12h 40m,2025-11-21 23:32:45,traveloka.com
+"Vietravel Airlines, VietJet Air",SGN,09:00,HAN,22:15,2.239.196 VND/khách,13h 15m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",SGN,07:20,HAN,20:15,2.278.616 VND/khách,12h 55m,2025-11-21 23:32:45,traveloka.com
+"Vietravel Airlines, Bamboo Airways",SGN,09:00,HAN,19:45,2.281.280 VND/khách,10h 45m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",SGN,14:00,HAN,20:15,2.284.719 VND/khách,6h 15m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",SGN,09:25,HAN,20:15,2.284.719 VND/khách,10h 50m,2025-11-21 23:32:45,traveloka.com
+"Vietravel Airlines, Vietnam Airlines",SGN,09:00,HAN,00:20,2.290.820 VND/khách,15h 20m,2025-11-21 23:32:45,traveloka.com
+"Bamboo Airways, Vietravel Airlines",SGN,13:25,HAN,20:15,2.322.343 VND/khách,6h 50m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Bamboo Airways",SGN,14:00,HAN,19:45,2.360.179 VND/khách,5h 45m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",SGN,17:05,HAN,22:15,2.390.668 VND/khách,5h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,21:25,HAN,09:00,2.418.866 VND/khách,11h 35m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",SGN,14:00,HAN,21:45,2.490.114 VND/khách,7h 45m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,11:40,HAN,19:35,2.524.108 VND/khách,7h 55m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,17:05,HAN,20:30,2.529.461 VND/khách,3h 25m,2025-11-21 23:32:45,traveloka.com
+"Vietravel Airlines, VietJet Air",SGN,09:00,HAN,16:45,2.590.684 VND/khách,7h 45m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,SGN,05:30,HAN,13:05,3.326.436 VND/khách,7h 35m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,20:55,HAN,00:20,3.939.346 VND/khách,3h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,SGN,17:05,HAN,21:45,3.939.346 VND/khách,4h 40m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,DAD,18:55,HAN,20:15,872.190 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,20:55,HAN,22:15,905.566 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,DAD,18:20,HAN,19:45,947.650 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,22:55,HAN,00:20,957.190 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,20:20,HAN,21:45,1.077.585 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,05:45,HAN,07:05,1.254.622 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,07:40,HAN,09:00,1.257.054 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,15:25,HAN,16:45,1.257.054 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,18:15,HAN,19:35,1.257.054 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,21:35,HAN,22:55,1.257.054 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,19:05,HAN,20:30,1.269.620 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,17:45,HAN,19:10,1.433.795 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,18:10,HAN,19:35,1.433.795 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,06:35,HAN,08:00,1.443.745 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,16:10,HAN,17:35,1.795.975 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,07:55,HAN,09:20,1.957.165 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,12:20,HAN,13:40,2.290.301 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,16:10,HAN,17:30,2.402.205 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,12:10,HAN,13:35,2.538.245 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,10:15,HAN,11:45,2.538.245 VND/khách,1h 30m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,09:40,HAN,11:05,2.591.975 VND/khách,1h 25m,2025-11-21 23:32:45,traveloka.com
+Vietravel Airlines,DAD,08:30,HAN,09:50,2.922.835 VND/khách,1h 20m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,05:25,HAN,10:40,4.037.711 VND/khách,29h 15m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,06:25,HAN,11:10,4.354.773 VND/khách,28h 45m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,DAD,15:00,HAN,21:00,4.411.556 VND/khách,30h 0m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,12:00,HAN,01:05,4.750.185 VND/khách,37h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,17:10,HAN,01:00,5.118.330 VND/khách,31h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,17:10,HAN,01:05,5.118.330 VND/khách,31h 55m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,13:25,HAN,01:00,5.435.735 VND/khách,35h 35m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,13:25,HAN,01:05,5.435.735 VND/khách,35h 40m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,11:00,HAN,01:05,5.917.315 VND/khách,38h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,13:20,HAN,18:05,6.588.166 VND/khách,4h 45m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,DAD,15:20,HAN,01:35,6.775.330 VND/khách,10h 15m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,12:00,HAN,16:55,6.816.232 VND/khách,4h 55m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,DAD,15:20,HAN,21:45,7.072.667 VND/khách,6h 25m,2025-11-21 23:32:45,traveloka.com
+Bamboo Airways,DAD,15:20,HAN,22:20,7.072.667 VND/khách,7h 0m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,15:25,HAN,20:05,8.041.338 VND/khách,4h 40m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,23:10,8.058.673 VND/khách,8h 55m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,00:05,8.058.673 VND/khách,9h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,19:05,8.347.955 VND/khách,4h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,21:50,8.347.955 VND/khách,7h 35m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,22:20,8.347.955 VND/khách,8h 5m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,23:05,8.347.955 VND/khách,8h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,20:50,HAN,07:05,8.347.955 VND/khách,10h 15m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,01:05,8.347.955 VND/khách,10h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,07:05,8.347.955 VND/khách,16h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,14:15,HAN,09:05,8.347.955 VND/khách,18h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,20:50,HAN,23:15,8.347.955 VND/khách,26h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,20:50,HAN,08:45,8.937.891 VND/khách,11h 55m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,DAD,20:50,HAN,09:05,9.234.755 VND/khách,12h 15m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, Bamboo Airways",VDO,08:40,HAN,01:35,3.490.299 VND/khách,16h 55m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, Vietravel Airlines",VDO,08:40,HAN,01:25,3.545.598 VND/khách,16h 45m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,23:10,3.602.043 VND/khách,14h 30m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,23:55,3.602.043 VND/khách,15h 15m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,07:30,3.614.833 VND/khách,22h 50m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,07:50,3.614.833 VND/khách,23h 10m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,08:25,3.614.833 VND/khách,23h 45m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, Bamboo Airways",VDO,08:40,HAN,09:20,3.620.580 VND/khách,24h 40m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, Vietravel Airlines",VDO,08:40,HAN,07:55,3.700.038 VND/khách,23h 15m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",VDO,08:40,HAN,15:10,4.423.739 VND/khách,6h 30m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, Bamboo Airways",VDO,08:40,HAN,15:25,4.635.554 VND/khách,6h 45m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,VDO,08:40,HAN,15:45,6.952.111 VND/khách,7h 5m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",HPH,12:10,HAN,20:15,1.787.756 VND/khách,8h 5m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,22:15,1.821.132 VND/khách,10h 5m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Bamboo Airways",HPH,12:10,HAN,19:45,1.863.216 VND/khách,7h 35m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",HPH,12:10,HAN,00:20,1.872.756 VND/khách,12h 10m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,07:05,2.066.578 VND/khách,18h 55m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietravel Airlines",HPH,12:10,HAN,09:50,2.138.216 VND/khách,21h 40m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",HPH,12:10,HAN,08:00,2.145.556 VND/khách,19h 50m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,16:45,2.172.620 VND/khách,4h 35m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,19:35,2.172.620 VND/khách,7h 25m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,09:00,2.183.012 VND/khách,20h 50m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,HPH,11:20,HAN,00:20,2.188.055 VND/khách,13h 0m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",HPH,12:10,HAN,19:10,2.349.361 VND/khách,7h 0m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",HPH,12:10,HAN,19:30,2.349.361 VND/khách,7h 20m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",HPH,11:20,HAN,07:05,2.381.877 VND/khách,19h 45m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",HPH,11:20,HAN,16:45,2.487.919 VND/khách,5h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,HPH,11:20,HAN,19:10,2.664.660 VND/khách,7h 50m,2025-11-21 23:32:45,traveloka.com
+"VietJet Air, Vietnam Airlines",HPH,12:10,HAN,17:35,2.711.541 VND/khách,5h 25m,2025-11-21 23:32:45,traveloka.com
+Vietnam Airlines,HPH,11:20,HAN,17:35,3.026.840 VND/khách,6h 15m,2025-11-21 23:32:45,traveloka.com
+VietJet Air,HPH,12:10,HAN,17:30,3.317.771 VND/khách,5h 20m,2025-11-21 23:32:45,traveloka.com
+"Vietnam Airlines, VietJet Air",HPH,11:20,HAN,17:30,3.633.070 VND/khách,6h 10m,2025-11-21 23:32:45,traveloka.com

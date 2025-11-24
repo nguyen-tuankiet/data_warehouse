@@ -44,7 +44,9 @@ def scrape_single_source(source_name, search_date):
 
     return None
 
-
+# Process 1. Crawl_Data_And_Save_To_CSV:
+# 1.8. Lưu dữ liệu vào file CSV
+# 1.8.1.Gọi hàm save_to_csv() → tạo thư mục scrap_YYYYMMDD + thêm cột crawled_at, source
 def save_to_csv(flights, source_name, base_folder="data"):
     if not flights:
         logger.warning("No flights to save to CSV.")

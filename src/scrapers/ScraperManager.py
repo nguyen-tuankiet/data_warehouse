@@ -8,10 +8,12 @@ from src.helpper.logger_config import logger
 class ScraperManager:
 
 
-
+# Process 1. Crawl_Data_And_Save_To_CSV:
+# 1.6. Gọi hàm scrape_single_source() từ ScraperManager.py
     def scrape_single_source(self, source, routes, date) -> List[Dict]:
         logger.info(source)
 
+# 1.6.1. Kiểm tra source_name và khởi tạo đúng scraper
         try:
             source_name = source["source_name"]
             scraper = None
