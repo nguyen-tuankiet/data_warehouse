@@ -143,6 +143,8 @@ def process_duplicate_data():
     except sqlite3.Error as e:
         logger.error(f"Error processing duplicate data in SQLite database: {e}")
 
+# Process 1. Crawl_Data_And_Save_To_CSV:
+#  1.1. Lấy cấu hình source từ bảng source trong SQLite
 def get_source_by_name(name):
     connection = get_sqlite_connection()
     if not connection:
@@ -161,6 +163,8 @@ def get_source_by_name(name):
         logger.error(f"Error fetching source names from SQLite database: {e}")
         return None
 
+# Process 1. Crawl_Data_And_Save_To_CSV:
+# 1.3. Lấy danh sách sân bay gốc từ bảng dim_airport
 def get_airport(active = True):
     connection = get_sqlite_connection()
     if not connection:
