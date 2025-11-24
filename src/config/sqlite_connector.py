@@ -248,13 +248,6 @@ def update_dim_airline():
     if not connection:
         logger.error("Cannot connect to SQLite database. Program terminated.")
         return 0;
-    query ="""
-           INSERT INTO dim_airline (airline_name) 
-            SELECT DISTINCT airline
-            FROM flights_metadata as f 
-            LEFT JOIN dim_airline as al ON al.airline_name = f.airline
-            WHERE al.airline_name IS NULL; 
-    """
     inserted_count = 0
     try:
         with connection:
@@ -273,7 +266,7 @@ def update_dim_airline():
                 for single_airline in _split_and_yield(raw_string):
                     new_airlines_to_insert.add(single_airline)
 
-            # Lấy các hãng bay đã tồn tại
+            # Lấy các hãng bay đã tồn tạ
             cursor.execute("SELECT airline_name FROM dim_airline")
             existing_airlines = {row[0] for row in cursor.fetchall()}
 

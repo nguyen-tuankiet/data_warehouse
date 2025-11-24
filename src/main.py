@@ -143,6 +143,7 @@ if __name__ == "__main__":
     elif args.update_airport:
         update_dim_airport()
 
+
     #     Mặc đinh sẽ cho crawl data
     else:
         date = args.date
