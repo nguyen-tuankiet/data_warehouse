@@ -22,11 +22,11 @@ dblogger = DBLogger()
 
 def transform_and_load_data(target_date_str):
 
-    # 1. Lấy ra địa chỉ ip máy đang thực hiện cào dữ liệu
+    # 1. Get ip address
     ip_address = get_ip_address()
     start_time_job = datetime.now()
 
-    # 2. Tiền xử lý dữ liệu 
+    # 2. Preprocess data 
     try:
         process_missing_data()
         process_duplicate_data()
@@ -34,7 +34,7 @@ def transform_and_load_data(target_date_str):
         logger.error(f"Error processing pre-data: {e}")
         return
 
-    # 3. Cập nhật dữ liệu airline 
+    # 3. Update airline data 
     updated_airline_count = update_dim_airline()
     if updated_airline_count > 0:
         dblogger.write_log(
@@ -42,9 +42,11 @@ def transform_and_load_data(target_date_str):
             SERVICE_NAME,
             "UPDATE_DIM_AIRLINE",
             f"Updated {updated_airline_count}",
+            start_time=start_time_job,
+            end_time=datetime.now(),
             ip_address=ip_address,
         )
-    # 4. Cập nhật dữ liệu airport
+    # 4. Update airport data
     updated_airport_count = update_dim_airport()
     if updated_airport_count > 0:
         dblogger.write_log(
@@ -52,41 +54,38 @@ def transform_and_load_data(target_date_str):
             SERVICE_NAME,
             "UPDATE_DIM_AIRPORT",
             f"Updated {updated_airport_count}",
+            start_time=start_time_job,
+            end_time=datetime.now(),
             ip_address=ip_address,
         )
 
-    # 5. Insert dữ liệu
+    # 5. Insert data to data warehouse
     page = 0
     total_flights_loaded = 0
 
     try:
         while True:
+            # 6. get flights data
             flights = get_batch(page)
 
-            # 6. nếu không có flights nào thì dừng chương trình
+            # 7. Check if there are no more flights
             if not flights:
+                # 8. break if no more flights
                 break
             
-            # 7. Chuẩn hoá dữ liệu và insert đến data warehouse
+            # 9. Standardize data
             standardized_flights = standardize_data(flights)
 
+            # 10. Insert data to data warehouse
             count = insert_flights(standardized_flights)
 
+            # 11. Check count inserted
             if count > 0:
                 total_flights_loaded += count
                 logger.info(f"Page {page}: Loaded {count} flights")
-
-                dblogger.write_log(
-                    LogType.INFO,
-                    SERVICE_NAME,
-                    "BATCH_INSERT",
-                    f"Page {page}: Loaded {count} flights",
-                    ip_address=ip_address,
-                )
-
             page += 1
 
-        # 9. Ghi log khi insert thành công
+        # 12. Write log when insert successfully
         dblogger.write_log(
             LogType.INFO,
             SERVICE_NAME,
@@ -97,9 +96,10 @@ def transform_and_load_data(target_date_str):
             ip_address=ip_address,
         )
         logger.info(f"Job for {target_date_str} completed successfully.")
+        # 13. Close connection
+        dblogger.close()
 
     except Exception as e:
-        # 8. Ghi log khi có lỗi xảy ra
         logger.error(f"Critical error on page {page}: {e}")
         dblogger.write_log(
             LogType.ERROR,

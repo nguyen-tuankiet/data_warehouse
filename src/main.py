@@ -18,6 +18,7 @@ from src.load_to_staging import load_csv_to_sqlite
 
 
 def scrape_single_source(source_name, search_date):
+    
     logger.info(f"Scraping data from {source_name}...")
     # Load config
     airport_code = get_airport()

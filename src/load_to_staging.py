@@ -18,17 +18,20 @@ def load_csv_to_sqlite(file_path):
 
     #2. Xóa dữ liệu cũ
     clear_flight_metadata()
+    # 3. get connection
     sqlite_connector = get_sqlite_connection()
+    # 4 check condition
     if not sqlite_connector:
+        # 5. write log and return none
         logger.error("Cannot connect to SQLite database. Program terminated.")
         return None
     try:
         start_time = datetime.now()
-        #3. Kiểm tra xem trước đó dữ liệu đã được insert hay chưa
+        #6. Check data inserted
         if(dblogger.check_if_job_completed(SERVICE_NAME, ACTION_NAME,start_time)):
             logger.info("Data already inserted. Program terminated.")
             return None
-        #4. Mở file csv và insert dữ liệu vào metadata
+        #7.open csv file
         with open(file_path, "r", encoding="utf-8") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             rows_to_insert = []
@@ -55,12 +58,12 @@ def load_csv_to_sqlite(file_path):
                                )
                                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) \
                                """
-            # 5. lấy cursor từ metadata và insert dữ liệu 
+            #8. Insert data to metadata
             cursor = sqlite_connector.cursor()
             cursor.executemany(insert_query, rows_to_insert)
             sqlite_connector.commit()
             end_time = datetime.now()
-            # 7. Ghi log khi insert thành công 
+            # 9. Write log when insert success
             dblogger.write_log(
                 LogType.INFO,
                 SERVICE_NAME,
@@ -73,7 +76,6 @@ def load_csv_to_sqlite(file_path):
             logger.info(f"Inserted {cursor.rowcount} rows into flights_metadata table.")
 
     except Exception as e:
-        # 6. Ghi log khi có lỗi xảy ra
         end_time = datetime.now()
         dblogger.write_log(
             LogType.ERROR,
@@ -87,8 +89,7 @@ def load_csv_to_sqlite(file_path):
         logger.error(f"Error reading CSV file: {e}")
 
     finally:
-        # 8. Đóng kết nối sau khi hoàn thành 
-        sqlite_connector.close()
+        # 10. return none
         return None
 
 
