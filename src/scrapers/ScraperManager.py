@@ -1,7 +1,7 @@
 from typing import List, Dict
 from datetime import datetime
 import logging
-from .TravelokaScraper import TravelScraperV2
+from .TravelokaScraper import TravelScraper
 from ..constant.DataSource import DataSource
 from src.helpper.logger_config import logger
 
@@ -19,7 +19,7 @@ class ScraperManager:
             scraper = None
             match source_name:
                 case DataSource.TRAVELOKA_DATA_SRC.value:
-                    scraper = TravelScraperV2(
+                    scraper = TravelScraper(
                         source_name,
                         source["url"]
                     )
