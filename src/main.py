@@ -8,8 +8,8 @@ from src.helpper.hepper import buidl_origin_destination
 import argparse
 from src.helpper.logger_config import logger
 from src.scrapers.ScraperManager import ScraperManager
-from src.transform.transform_and_load_data import transform_and_load_data
-
+from src.transform_and_load_data import transform_and_load_data
+from src.load_to_staging import load_csv_to_sqlite
 
 def scrape_single_source(source_name, search_date):
     logger.info(f"Scraping data from {source_name}...")
@@ -34,9 +34,6 @@ def scrape_single_source(source_name, search_date):
         return None
     csv_path = save_to_csv(flights, source_name)
     load_csv_to_sqlite(csv_path)
-
-
-    # load_csv_to_sqlite("data/scrap_20251029/Traveloka.com.csv")
 
     transform_and_load_data()
     #         TODO: Create log
@@ -75,49 +72,6 @@ def save_to_csv(flights, source_name, base_folder="data"):
     logger.info(f"Saved {len(flights)} flights to CSV file: {file_name}")
     return file_path
 
-def load_csv_to_sqlite(file_path):
-    clear_flight_metadata()
-    sqlite_connector = get_sqlite_connection()
-    if not sqlite_connector:
-        logger.error("Cannot connect to SQLite database. Program terminated.")
-        return None
-    try:
-        with open(file_path, 'r', encoding='utf-8') as csv_file:
-            csv_reader = csv.DictReader(csv_file)
-            rows_to_insert = []
-
-            for row in csv_reader:
-                rows_to_insert.append((
-                    row['airline'],
-                    row['departure_airport'],
-                    row['departure_time'],
-                    row['destination_airport'],
-                    row['destination_time'],
-                    row['duration_time'],
-                    row['price'],
-                    row['source'],
-                    row['crawled_at'],
-
-                ))
-
-            insert_query = """
-                               INSERT INTO flights_metadata (
-                               airline, departure_airport, departure_time,
-                                   destination_airport, destination_time, duration_time, price, source, crawled_at
-                               )
-                               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?) \
-                               """
-
-            cursor = sqlite_connector.cursor()
-            cursor.executemany(insert_query, rows_to_insert)
-            sqlite_connector.commit()
-            logger.info(f"Inserted {cursor.rowcount} rows into flights_metadata table.")
-    except Exception as e:
-        logger.error(f"Error reading CSV file: {e}")
-
-    finally:
-        sqlite_connector.close()
-        return None
 
 
 if __name__ == "__main__":

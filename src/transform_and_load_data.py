@@ -38,7 +38,6 @@ def transform_and_load_data():
         insert_flights(standardized_flights)
         page += 1
 
-
 def standardize_data(flights):
     standardized_flights = []
     logger.info(type(flights))
@@ -160,7 +159,6 @@ def parse_duration(duration_str):
     return hours * 60 + minutes
 
 def parse_currency(price_str: str):
-
     if not price_str:
         return None
 
@@ -172,3 +170,8 @@ def parse_currency(price_str: str):
 
     match = re.search(r'[A-Z]{2,4}', price_str)
     return match.group(0) if match else None
+
+
+if __name__ == "__main__":
+    #  kiểm tra xem ngày nhận vào đã insert dữ liệu hay chưa 
+    transform_and_load_data()
