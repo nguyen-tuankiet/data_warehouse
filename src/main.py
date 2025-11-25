@@ -15,10 +15,17 @@ from src.helpper.logger_config import logger
 from src.scrapers.ScraperManager import ScraperManager
 from src.transform_and_load_data import transform_and_load_data
 from src.load_to_staging import load_csv_to_sqlite
+from src.helpper.db_logger import DBLogger
+from src.helpper.get_Ip import get_ip_address
+
+SERVICE_NAME = "crawl_to_csv"
+ACTION_NAME = "crawl_to_csv"
+dblogger = DBLogger()
 
 
 def scrape_single_source(source_name, search_date):
-    
+    ip_address = get_ip_address()
+    start_time = datetime.now()
     logger.info(f"Scraping data from {source_name}...")
     # Load config
     airport_code = get_airport()
@@ -26,9 +33,27 @@ def scrape_single_source(source_name, search_date):
 
     if web_source is None:
         logger.error("Source name not found in database. Program terminated.")
+        dblogger.write_log(
+            SERVICE_NAME,
+            ACTION_NAME,
+            "ERROR",
+            "Source name not found in database. Program terminated.",
+            start_time,
+            datetime.now(),
+            ip_address,
+        )
         return None
     if search_date < datetime.now():
         logger.error("Date cannot be in the past. Program terminated.")
+        dblogger.write_log(
+            SERVICE_NAME,
+            ACTION_NAME,
+            "ERROR",
+            "Date cannot be in the past. Program terminated.",
+            start_time,
+            datetime.now(),
+            ip_address,
+        )
         return None
 
     routes = buidl_origin_destination(airport_code)
@@ -39,6 +64,15 @@ def scrape_single_source(source_name, search_date):
 
     if not flights:
         logger.warning("No flights found.")
+        dblogger.write_log(
+            SERVICE_NAME,
+            ACTION_NAME,
+            "WARNING",
+            "No flights found.",
+            start_time,
+            datetime.now(),
+            ip_address,
+        )
         return None
 
     csv_path = save_to_csv(flights, source_name)
@@ -58,8 +92,19 @@ def scrape_single_source(source_name, search_date):
 # 1.8. Lưu dữ liệu vào file CSV
 # 1.8.1.Gọi hàm save_to_csv() → tạo thư mục scrap_YYYYMMDD + thêm cột crawled_at, source
 def save_to_csv(flights, source_name, base_folder="data"):
+    ip_address = get_ip_address()
+    start_time = datetime.now()
     if not flights:
         logger.warning("No flights to save to CSV.")
+        dblogger.write_log(
+            SERVICE_NAME,
+            ACTION_NAME,
+            "WARNING",
+            "No flights to save to CSV.",
+            start_time,
+            datetime.now(),
+            ip_address,
+        )
         return
 
     today_str = datetime.now().strftime("%Y%m%d")
@@ -82,6 +127,15 @@ def save_to_csv(flights, source_name, base_folder="data"):
         writer.writerows(flights)
 
     logger.info(f"Saved {len(flights)} flights to CSV file: {file_name}")
+    dblogger.write_log(
+        SERVICE_NAME,
+        ACTION_NAME,
+        "INFO",
+        f"Saved {len(flights)} flights to CSV file: {file_name}",
+        start_time,
+        datetime.now(),
+        ip_address,
+    )
     return file_path
 
 
