@@ -1,11 +1,15 @@
-from datetime import datetime
 import argparse
 from datetime import datetime, timedelta
 
 from src.config.data_warehouse_connector import insert_flights
 from src.helpper.logger_config import logger
-from src.config.sqlite_connector import process_missing_data, process_duplicate_data, get_batch, update_dim_airline, \
-    update_dim_airport
+from src.config.sqlite_connector import (
+    process_missing_data,
+    process_duplicate_data,
+    get_batch,
+    update_dim_airline,
+    update_dim_airport,
+)
 import re
 from src.constant.LogType import LogType
 from src.config.log_database import DBLogger
@@ -16,7 +20,7 @@ ACTION_NAME = "transform_and_load_data"
 dblogger = DBLogger()
 
 
-def transform_and_load_data(target_date_str):  # <--- 1. Thêm tham số ngày vào
+def transform_and_load_data(target_date_str):
     # Lấy IP một lần ở đầu hàm
     ip_address = get_ip_address()  # Đảm bảo bạn đã import hàm này
     start_time_job = datetime.now()
@@ -118,9 +122,7 @@ def standardize_data(flights):
     standardized_flights = []
     logger.info(type(flights))
 
-
     for f in flights:
-
         new_flight = {
             "airline": f["airline"],
             "departure_airport": f["departure_airport"],
@@ -140,6 +142,7 @@ def standardize_data(flights):
 
     return standardized_flights
 
+
 def validate_data(flight):
     required_fields = [
         "airline",
@@ -148,7 +151,7 @@ def validate_data(flight):
         "departure_time",
         "destination_time",
         "price",
-        "currency"
+        "currency",
     ]
 
     # 1️⃣ Trường bắt buộc không được None hoặc rỗng
@@ -156,7 +159,6 @@ def validate_data(flight):
         if field not in flight or flight[field] in (None, ""):
             logger.warning(f"Missing required field: {field} in flight {flight}")
             return False
-
 
     # 2️⃣ Kiểm tra kiểu dữ liệu datetime
     datetime_fields = ["departure_time", "destination_time", "scaper_time"]
@@ -188,13 +190,18 @@ def validate_data(flight):
         try:
             duration = int(flight["duration_minutes"])
             if duration < 0:
-                logger.warning(f"Invalid duration_minutes: {flight['duration_minutes']} in flight {flight}")
+                logger.warning(
+                    f"Invalid duration_minutes: {flight['duration_minutes']} in flight {flight}"
+                )
                 return False
         except (ValueError, TypeError):
-            logger.warning(f"duration_minutes is not an integer: {flight['duration_minutes']} in flight {flight}")
+            logger.warning(
+                f"duration_minutes is not an integer: {flight['duration_minutes']} in flight {flight}"
+            )
             return False
 
     return True
+
 
 def normalize_datetime(dt_str):
     for fmt in (
@@ -213,38 +220,41 @@ def normalize_datetime(dt_str):
             continue
     return None
 
+
 def parse_price(price_str):
     if not price_str:
         return None
     # Lấy tất cả ký tự số
-    digits = re.findall(r'\d+', price_str)
+    digits = re.findall(r"\d+", price_str)
     if not digits:
         return None
-    return int(''.join(digits))
+    return int("".join(digits))
+
 
 def parse_duration(duration_str):
     hours = 0
     minutes = 0
-    if 'h' in duration_str:
-        parts = duration_str.split('h')
+    if "h" in duration_str:
+        parts = duration_str.split("h")
         hours = int(parts[0].strip())
-        if 'm' in parts[1]:
-            minutes = int(parts[1].replace('m', '').strip())
-    elif 'm' in duration_str:
-        minutes = int(duration_str.replace('m', '').strip())
+        if "m" in parts[1]:
+            minutes = int(parts[1].replace("m", "").strip())
+    elif "m" in duration_str:
+        minutes = int(duration_str.replace("m", "").strip())
     return hours * 60 + minutes
+
 
 def parse_currency(price_str: str):
     if not price_str:
         return None
 
-    currencies = ['VND', 'USD', 'EUR', 'JPY', 'KRW', 'THB', 'AUD']
+    currencies = ["VND", "USD", "EUR", "JPY", "KRW", "THB", "AUD"]
 
     for cur in currencies:
         if cur in price_str:
             return cur
 
-    match = re.search(r'[A-Z]{2,4}', price_str)
+    match = re.search(r"[A-Z]{2,4}", price_str)
     return match.group(0) if match else None
 
 
@@ -280,4 +290,3 @@ if __name__ == "__main__":
         print(f"[START] Starting job for {target_date_str}...")
 
         transform_and_load_data(target_date_str)
-

@@ -22,6 +22,10 @@ def load_csv_to_sqlite(file_path):
         return None
     try:
         start_time = datetime.now()
+        #  check data inserted 
+        if(dblogger.check_if_job_completed(SERVICE_NAME, ACTION_NAME,start_time)):
+            logger.info("Data already inserted. Program terminated.")
+            return None
         with open(file_path, "r", encoding="utf-8") as csv_file:
             csv_reader = csv.DictReader(csv_file)
             rows_to_insert = []
