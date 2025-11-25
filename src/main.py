@@ -33,14 +33,19 @@ def scrape_single_source(source_name, search_date):
     routes = buidl_origin_destination(airport_code)
 
     scraperManager = ScraperManager()
+
     flights = scraperManager.scrape_single_source(web_source, routes, search_date)
+
     if not flights:
         logger.warning("No flights found.")
         return None
+
     csv_path = save_to_csv(flights, source_name)
+
     if not csv_path:
         logger.warning("No CSV file generated.")
         return None
+        
     load_csv_to_sqlite(csv_path)
 
     transform_and_load_data(search_date.strftime("%Y-%m-%d"))

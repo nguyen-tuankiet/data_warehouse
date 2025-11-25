@@ -21,21 +21,20 @@ dblogger = DBLogger()
 
 
 def transform_and_load_data(target_date_str):
-    # Lấy IP một lần ở đầu hàm
-    ip_address = get_ip_address()  # Đảm bảo bạn đã import hàm này
+
+    # 1. Lấy ra địa chỉ ip máy đang thực hiện cào dữ liệu
+    ip_address = get_ip_address()
     start_time_job = datetime.now()
 
-    # --- Giai đoạn 1: Tiền xử lý ---
+    # 2. Tiền xử lý dữ liệu 
     try:
-        # Nên truyền ngày vào để biết xử lý dữ liệu nào
         process_missing_data()
         process_duplicate_data()
     except Exception as e:
         logger.error(f"Error processing pre-data: {e}")
-        return  # Dừng nếu lỗi ngay từ đầu
+        return
 
-    # --- Giai đoạn 2: Cập nhật Dimension (Chỉ làm 1 lần) ---
-    # Log vào DB nhưng dùng action khác để không bị hàm check hiểu nhầm
+    # 3. Cập nhật dữ liệu airline 
     updated_airline_count = update_dim_airline()
     if updated_airline_count > 0:
         dblogger.write_log(
@@ -45,7 +44,7 @@ def transform_and_load_data(target_date_str):
             f"Updated {updated_airline_count}",
             ip_address=ip_address,
         )
-
+    # 4. Cập nhật dữ liệu airport
     updated_airport_count = update_dim_airport()
     if updated_airport_count > 0:
         dblogger.write_log(
@@ -56,55 +55,51 @@ def transform_and_load_data(target_date_str):
             ip_address=ip_address,
         )
 
-    # --- Giai đoạn 3: Vòng lặp xử lý chính ---
+    # 5. Insert dữ liệu
     page = 0
     total_flights_loaded = 0
 
     try:
         while True:
-            # Truyền ngày vào get_batch để lấy đúng dữ liệu ngày đó
             flights = get_batch(page)
 
+            # 6. nếu không có flights nào thì dừng chương trình
             if not flights:
                 break
-
+            
+            # 7. Chuẩn hoá dữ liệu và insert đến data warehouse
             standardized_flights = standardize_data(flights)
 
-            # Load to data_warehouse
             count = insert_flights(standardized_flights)
 
             if count > 0:
                 total_flights_loaded += count
                 logger.info(f"Page {page}: Loaded {count} flights")
 
-                # OPTIONAL: Ghi log DB chi tiết từng batch (nhưng đổi Action Name)
-                # Dùng action="BATCH_INSERT" để hàm check_completed KHÔNG bắt dính cái này
                 dblogger.write_log(
                     LogType.INFO,
                     SERVICE_NAME,
-                    "BATCH_INSERT",  # <--- KHÁC ACTION_NAME CHÍNH
+                    "BATCH_INSERT",
                     f"Page {page}: Loaded {count} flights",
                     ip_address=ip_address,
                 )
 
             page += 1
 
-        # --- QUAN TRỌNG NHẤT: GHI LOG HOÀN TẤT ---
-        # Chỉ khi thoát vòng lặp thành công mới ghi dòng này.
-        # Đây là dòng mà check_if_job_completed sẽ tìm kiếm.
+        # 9. Ghi log khi insert thành công
         dblogger.write_log(
             LogType.INFO,
             SERVICE_NAME,
-            ACTION_NAME,  # <--- Đây là "TRANSFORM_AND_LOAD"
+            ACTION_NAME,
             f"SUCCESS: Processed {target_date_str}. Total flights: {total_flights_loaded}",
             start_time=start_time_job,
             end_time=datetime.now(),
             ip_address=ip_address,
         )
-        print(f"Job for {target_date_str} completed successfully.")
+        logger.info(f"Job for {target_date_str} completed successfully.")
 
     except Exception as e:
-        # Nếu lỗi giữa chừng, ghi log ERROR
+        # 8. Ghi log khi có lỗi xảy ra
         logger.error(f"Critical error on page {page}: {e}")
         dblogger.write_log(
             LogType.ERROR,
@@ -115,7 +110,7 @@ def transform_and_load_data(target_date_str):
             end_time=datetime.now(),
             ip_address=ip_address,
         )
-        raise e  # Ném lỗi ra để main biết mà dừng
+        raise e
 
 
 def standardize_data(flights):
@@ -154,13 +149,10 @@ def validate_data(flight):
         "currency",
     ]
 
-    # 1️⃣ Trường bắt buộc không được None hoặc rỗng
     for field in required_fields:
         if field not in flight or flight[field] in (None, ""):
             logger.warning(f"Missing required field: {field} in flight {flight}")
             return False
-
-    # 2️⃣ Kiểm tra kiểu dữ liệu datetime
     datetime_fields = ["departure_time", "destination_time", "scaper_time"]
     for dt_field in datetime_fields:
         if dt_field in flight and flight[dt_field]:
@@ -175,7 +167,6 @@ def validate_data(flight):
                 logger.warning(f"Invalid type for {dt_field}: {type(value)}")
                 return False
 
-    # 3️⃣ Kiểm tra price là số >= 0
     try:
         price = float(flight["price"])
         if price < 0:
@@ -185,7 +176,6 @@ def validate_data(flight):
         logger.warning(f"Price is not a number: {flight['price']} in flight {flight}")
         return False
 
-        # 4️⃣ Kiểm tra duration_minutes là int >=0 nếu có
     if "duration_minutes" in flight and flight["duration_minutes"] is not None:
         try:
             duration = int(flight["duration_minutes"])
@@ -266,27 +256,24 @@ if __name__ == "__main__":
     parser.add_argument(
         "-d",
         "--date",
-        # Lưu ý: Giữ nguyên logic parse này là tốt để validate định dạng đầu vào
         type=lambda s: datetime.strptime(s, "%Y-%m-%d"),
         default=datetime.now() + timedelta(days=1),
         help="Ngày bay định dạng YYYY-MM-DD",
     )
     args = parser.parse_args()
 
-    # --- BƯỚC SỬA 1: Chuyển datetime object về string chuẩn 'YYYY-MM-DD' ---
-    # Vì hàm check DB và hàm xử lý đều cần string cho dễ thao tác
+
     target_date_str = args.date.strftime("%Y-%m-%d")
 
-    print(f"Checking job status for: {target_date_str}...")
+    logger.info(f"Checking job status for: {target_date_str}...")
 
-    # Gọi hàm check
     isCompleted = dblogger.check_if_job_completed(
         SERVICE_NAME, ACTION_NAME, target_date_str
     )
 
     if isCompleted:
-        print(f"[SKIP] Job for {target_date_str} is already completed. Exiting.")
+        logger.info(f"[SKIP] Job for {target_date_str} is already completed. Exiting.")
     else:
-        print(f"[START] Starting job for {target_date_str}...")
+        logger.info(f"[START] Starting job for {target_date_str}...")
 
         transform_and_load_data(target_date_str)

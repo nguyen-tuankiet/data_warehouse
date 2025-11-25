@@ -106,7 +106,7 @@ def process_missing_data():
                    OR destination_time IS NULL
                    OR duration_time IS NULL
                    OR price IS NULL
-                ;
+                
             """
             cursor.execute(query)
             connection.commit()
@@ -133,7 +133,7 @@ def process_duplicate_data():
                                 departure_time, destination_airport,
                                 destination_time, duration_time, price
                     )
-                ;
+                
             """
             cursor.execute(query)
             connection.commit()
@@ -216,7 +216,7 @@ def update_dim_airport():
     connection = get_sqlite_connection()
     if not connection:
         logger.error("Cannot connect to SQLite database. Program terminated.")
-        return 0;
+        return 0
 
     query ="""
            INSERT INTO dim_airport (code) 
@@ -227,7 +227,7 @@ def update_dim_airport():
                 SELECT DISTINCT destination_airport AS airport_code FROM flights_metadata
             ) T1
             LEFT JOIN dim_airport ap ON T1.airport_code = ap.code
-            WHERE ap.code IS NULL; 
+            WHERE ap.code IS NULL 
            """
     inserted_count = 0
     try:
@@ -235,19 +235,19 @@ def update_dim_airport():
             cursor = connection.cursor()
             cursor.execute(query)
             connection.commit()
-            inserted_count = cursor.rowcount;
+            inserted_count = cursor.rowcount
             logger.info(f"Inserted {inserted_count} rows into dim_airport table.")
-            return inserted_count;
+            return inserted_count
     except sqlite3.Error as e:
         logger.error(f"Error updating dim_airport table: {e}")
-        return inserted_count;
+        return inserted_count
 
 
 def update_dim_airline():
     connection = get_sqlite_connection()
     if not connection:
         logger.error("Cannot connect to SQLite database. Program terminated.")
-        return 0;
+        return 0
     inserted_count = 0
     try:
         with connection:
@@ -286,7 +286,7 @@ def update_dim_airline():
 
     except sqlite3.Error as e:
         logger.error(f"Error updating dim_airline table: {e}")
-        return inserted_count;
+        return inserted_count
 
 
 
