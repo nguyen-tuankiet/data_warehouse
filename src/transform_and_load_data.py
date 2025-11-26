@@ -1,7 +1,7 @@
 import argparse
 from datetime import datetime, timedelta
 
-from src.config.data_warehouse_connector import insert_flights
+from src.config.data_warehouse_connector import insert_flights, check_if_job_completed
 from src.helpper.logger_config import logger
 from src.config.sqlite_connector import (
     process_missing_data,
@@ -267,9 +267,7 @@ if __name__ == "__main__":
 
     logger.info(f"Checking job status for: {target_date_str}...")
 
-    isCompleted = dblogger.check_if_job_completed(
-        SERVICE_NAME, ACTION_NAME, target_date_str
-    )
+    isCompleted = check_if_job_completed(target_date_str)
 
     if isCompleted:
         logger.info(f"[SKIP] Job for {target_date_str} is already completed. Exiting.")

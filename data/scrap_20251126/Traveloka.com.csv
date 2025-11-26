@@ -1,0 +1,21 @@
+airline,departure_airport,departure_time,destination_airport,destination_time,price,duration_time,crawled_at,source
+Vietnam Airlines,HAN,22:20,SGN,00:30,1.859.655 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+Bamboo Airways,HAN,22:35,SGN,00:50,1.462.371 VND/khách,2h 15m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,15:35,SGN,17:50,1.560.046 VND/khách,2h 15m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,15:55,SGN,18:10,1.560.046 VND/khách,2h 15m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,21:50,SGN,23:55,1.571.715 VND/khách,2h 5m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,17:10,SGN,19:20,1.571.715 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,20:10,SGN,22:20,1.571.715 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,HAN,22:10,SGN,00:20,1.571.715 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+Bamboo Airways,HAN,20:30,SGN,22:45,1.592.652 VND/khách,2h 15m,2025-11-26 08:37:23,Traveloka.com
+Vietravel Airlines,HAN,20:10,SGN,22:25,1.598.069 VND/khách,2h 15m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,22:55,HAN,01:00,1.571.715 VND/khách,2h 5m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,22:55,HAN,01:05,1.571.715 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,22:20,HAN,00:30,1.687.576 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+Bamboo Airways,SGN,23:25,HAN,01:35,1.963.294 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,18:50,HAN,21:00,2.001.864 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,21:50,HAN,23:55,2.125.701 VND/khách,2h 5m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,20:25,HAN,22:35,2.144.095 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+SUN PhuQuoc AIRWAYS,SGN,19:15,HAN,21:25,2.278.381 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com
+Vietnam Airlines,SGN,23:00,HAN,01:05,2.278.550 VND/khách,2h 5m,2025-11-26 08:37:23,Traveloka.com
+VietJet Air,SGN,18:40,HAN,20:50,2.346.251 VND/khách,2h 10m,2025-11-26 08:37:23,Traveloka.com

@@ -56,7 +56,25 @@ def get_db_connection():
 
     return _db_connection
 
-
+def check_if_job_completed (date_check : str): 
+    query = '''
+    SELECT COUNT(*) FROM flights 
+    WHERE date(departure_time) = date(%s)
+    '''
+    connection = get_db_connection()
+    if not connection:
+        print("Cannot connect to DB. Aborting check.")
+        return False
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, (date_check,))
+            count = cursor.fetchone()
+            return count['COUNT(*)'] > 0
+    except pymysql.Error as e:
+        print(f"Error checking job completion: {e}")
+        return False
+    finally:
+        connection.close()
 
 
 def insert_flights(flights: list):

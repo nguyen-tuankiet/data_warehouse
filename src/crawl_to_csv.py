@@ -6,8 +6,9 @@ from src.helpper.hepper import buidl_origin_destination
 from src.scrapers.ScraperManager import ScraperManager
 from src.main import save_to_csv  # Reuse hàm lưu CSV có sẵn
 from src.helpper.logger_config import logger
-from src.helpper.db_logger import DBLogger
+from src.config.log_database import DBLogger
 from src.helpper.get_Ip import get_ip_address
+from src.constant.LogType import LogType
 
 SERVICE_NAME = "crawl_to_csv"
 ACTION_NAME = "crawl_to_csv"
@@ -21,10 +22,10 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     logger.info(
         f"Bắt đầu crawl dữ liệu từ {source_name} cho ngày {search_date.strftime('%Y-%m-%d')}"
     )
-    dblogger.log(
+    dblogger.write_log(
+        LogType.INFO,
         SERVICE_NAME,
         ACTION_NAME,
-        "INFO",
         f"Bắt đầu crawl dữ liệu từ {source_name} cho ngày {search_date.strftime('%Y-%m-%d')}",
         start_time,
         datetime.now(),
@@ -38,11 +39,14 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     if not web_source:
         # 1.1.1.1. Không tìm thấy source → dừng toàn bộ
         logger.error(f"Không tìm thấy source '{source_name}' trong database!")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.ERROR,
             SERVICE_NAME,
             ACTION_NAME,
-            "ERROR",
             f"Không tìm thấy source '{source_name}' trong database!",
+            start_time,
+            datetime.now(),
+            ip_address,
         )
         return
 
@@ -50,10 +54,10 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     if search_date.date() < datetime.now().date():
         # 1.2.1. Ngày không hợp lệ → dừng
         logger.error("Không được chọn ngày trong quá khứ!")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.ERROR,
             SERVICE_NAME,
             ACTION_NAME,
-            "ERROR",
             "Không được chọn ngày trong quá khứ!",
             start_time,
             datetime.now(),
@@ -68,10 +72,10 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     if not airport_codes:
         # 1.3.1.1. Không có sân bay → không tạo được route
         logger.error("Không lấy được danh sách sân bay từ bảng dim_airport!")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.ERROR,
             SERVICE_NAME,
             ACTION_NAME,
-            "ERROR",
             "Không lấy được danh sách sân bay từ bảng dim_airport!",
             start_time,
             datetime.now(),
@@ -95,10 +99,10 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     if not flights:
         # 1.7.1. Không có dữ liệu → kết thúc sớm
         logger.warning("Không tìm thấy chuyến bay nào!")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.WARNING,
             SERVICE_NAME,
             ACTION_NAME,
-            "WARNING",
             "Không tìm thấy chuyến bay nào!",
             start_time,
             datetime.now(),
@@ -112,21 +116,21 @@ def crawl_and_save_to_csv(source_name: str, search_date: datetime):
     # 1.8.1. Kiểm tra việc lưu file thành công
     if csv_path:
         logger.info(f"HOÀN TẤT! Đã lưu {len(flights)} chuyến bay → {csv_path}")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.INFO,
             SERVICE_NAME,
             ACTION_NAME,
-            "INFO",
             f"HOÀN TẤT! Đã lưu {len(flights)} chuyến bay → {csv_path}",
-                start_time,
+            start_time,
             datetime.now(),
             ip_address,
         )
     else:
         logger.error("Lưu file CSV thất bại!")
-        dblogger.log(
+        dblogger.write_log(
+            LogType.ERROR,
             SERVICE_NAME,
             ACTION_NAME,
-            "ERROR",
             "Lưu file CSV thất bại!",
             start_time,
             datetime.now(),

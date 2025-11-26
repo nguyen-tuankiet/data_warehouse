@@ -15,7 +15,7 @@ from src.helpper.logger_config import logger
 from src.scrapers.ScraperManager import ScraperManager
 from src.transform_and_load_data import transform_and_load_data
 from src.load_to_staging import load_csv_to_sqlite
-from src.helpper.db_logger import DBLogger
+from src.config.log_database import DBLogger
 from src.helpper.get_Ip import get_ip_address
 
 SERVICE_NAME = "crawl_to_csv"
@@ -80,7 +80,7 @@ def scrape_single_source(source_name, search_date):
     if not csv_path:
         logger.warning("No CSV file generated.")
         return None
-        
+
     load_csv_to_sqlite(csv_path)
 
     transform_and_load_data(search_date.strftime("%Y-%m-%d"))
@@ -92,19 +92,8 @@ def scrape_single_source(source_name, search_date):
 # 1.8. Lưu dữ liệu vào file CSV
 # 1.8.1.Gọi hàm save_to_csv() → tạo thư mục scrap_YYYYMMDD + thêm cột crawled_at, source
 def save_to_csv(flights, source_name, base_folder="data"):
-    ip_address = get_ip_address()
-    start_time = datetime.now()
     if not flights:
         logger.warning("No flights to save to CSV.")
-        dblogger.write_log(
-            SERVICE_NAME,
-            ACTION_NAME,
-            "WARNING",
-            "No flights to save to CSV.",
-            start_time,
-            datetime.now(),
-            ip_address,
-        )
         return
 
     today_str = datetime.now().strftime("%Y%m%d")
@@ -127,20 +116,10 @@ def save_to_csv(flights, source_name, base_folder="data"):
         writer.writerows(flights)
 
     logger.info(f"Saved {len(flights)} flights to CSV file: {file_name}")
-    dblogger.write_log(
-        SERVICE_NAME,
-        ACTION_NAME,
-        "INFO",
-        f"Saved {len(flights)} flights to CSV file: {file_name}",
-        start_time,
-        datetime.now(),
-        ip_address,
-    )
     return file_path
 
 
 if __name__ == "__main__":
-
     parser = argparse.ArgumentParser(
         description="Scrape and transform data from multiple sources"
     )
@@ -169,7 +148,6 @@ if __name__ == "__main__":
     parser.add_argument(
         "--update-airport", action="store_true", help="Run check and update dim_airport"
     )
-    
 
     args = parser.parse_args()
 
